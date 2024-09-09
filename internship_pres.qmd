@@ -1,0 +1,581 @@
+---
+title: "**Pertes d'armoire de contrôle-commande et post-traitement de résultats de simulation**"
+subtitle: "![](assets/images/UT_logo.jpg){width=45%} ![](assets/images/MECEN_logo.png){width=23%} <hr class='divider'>"
+author: "**Corentin Ducloux** -- Master 2 Mécen"
+title-slide-attributes: 
+    data-notes: "Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d'études. Pendant ce stage j'ai eu deux sujets principaux à aborder : un qui traite de problématiques I&C et l'autre qui est plus axé simulateur. Si ces termes ne vous parlent pas pour l'instant, il seront explicités par la suite. Je remercie évidemment mes deux tuteurs, Alexandre Padet et Grégoire Bouvet pour leur accompagnement."
+date: 09-13-2024
+date-format: DD/MM/YYYY
+format: 
+    revealjs:
+        reference-location: document
+        lang: fr
+        theme: [assets/custom_style.scss]
+        background-transition: fade
+        highlight-style: dracula
+        incremental: false
+        transition: fade
+        slide-number: true
+        navigation-mode: linear
+        footer: "EDF | DISC | CNEPE"
+        logo: assets/images/edf_logo.png
+        css: assets/styles.css
+---
+
+```{r}
+#| label: library_imports
+library(tibble)
+library(dplyr)
+library(reactable)
+library(gt)
+```
+
+## Table des matières {.smaller}
+
+<br>
+
+[1 | INTRODUCTION](/#introduction)
+
+- [Présentation d'EDF](#présentation-dedf){.no-color}
+- [Quelques chiffres clés (2023)](#quelques-chiffres-clés-2023)
+- [Mix électrique d'EDF en France](#mix-électrique-dedf-en-france)
+- [Parc nucléaire français](#parc-nucléaire-français)
+- [Présentation du CNEPE](#présentation-du-cnepe)
+
+# 1 | INTRODUCTION
+
+
+## Présentation d'EDF {.smaller}
+
+<br>
+
+> EDF est une société française de **production** et de **fourniture** d'électricité.
+>
+> $\rightarrow$ {{< iconify fa6-solid calendar >}} **Date de création** : 1946
+>
+> $\rightarrow$ {{< iconify octicon law-16 >}} **Statut juridique** : Monopole d'Etat (EPIC) ^[<u>E</u>tablissement <u>P</u>ublic à <u>C</u>aractère <u>I</u>ndustriel ou <u>C</u>ommercial] puis Société Anonyme ^[A partir de 2004]
+
+<br>
+
+![](assets/images/edf_logo.PNG){.lightbox width=50% fig-align=center}
+
+
+:::{.notes}
+
+Je pense ne pas me tromper en affirmant que la majorité d'entre vous connait déjà EDF, puisqu'on est tous amené à un moment ou à un autre à payer des factures d'électricité dans notre vie. Mais pour ceux qui s'éclairent encore à la bougie, 
+
+EDF c'est une société française de production d'electricité, et c'est aussi un fournisseur, que ce soit pour les particuliers ou les entreprises.
+
+Pour un peu d'histoire, EDF a été crée en 1946 en tant que Monopole d'Etat, et c'est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen que c'est devenu une société anonyme, qui n'est plus en situation de monopole au niveau de la fourniture d'électricité, c'est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.
+
+Alors c'est une Société Anonyme mais, quand même, aujourd'hui, 100% du capital est détenu par l'Etat Français, donc il y a une forte mission de service public derrière.
+
+:::
+
+## Quelques chiffres clés (2023) {.smaller}
+
+![](assets/images/edf_kpi.PNG){.lightbox width=80% fig-align=center}
+
+:::{.caption}
+**Source :** [https://www.edf.fr/groupe-edf/edf-en-bref {{< iconify fa6-solid link >}}](https://www.edf.fr/groupe-edf/edf-en-bref)
+:::
+
+:::{.notes}
+Quelques chiffres clés concernant le groupe.
+
+Générant un chiffre d’affaires de 140 milliards d’euros et avec un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c'est particulièrement vrai en France et en Europe.
+
+Petit apparté aussi sur les 467 Terrawatt heure de production mondiale 
+:::
+
+## Mix électrique d'EDF en France {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](assets/images/fr_edf_twh.png){.lightbox width=90% fig-align=center}
+:::
+
+::: {.column width="50%"}
+<br>
+<br>
+
+::: {.callout-tip icon=false}
+
+## Remarques
+
+- Prépondérance du nucléaire :
+    - **Intérêt** : approvisionnement en continu
+- Part importante d'hydroélectrique :
+    - **Intérêt** : levier d'ajustement
+
+$\rightarrow$ **♻️ Plus de 90% d'électricité bas carbone.**
+
+:::
+:::
+::::
+
+
+:::{.caption-long}
+**Source :** [https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat {{< iconify fa6-solid link >}}](https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat)
+:::
+
+:::{.notes}
+Sur ces 467 TerraWatts heure de production mondiale du groupe, les 3/4 à peu près sont produits en France.
+
+On voit surtout aussi dans le mix eléctrique français l'importance considérable de l'énergie d'origine nucléaire.
+
+Au delà de ça on voit en fait que notre mix électrique en France il est de facto presque entièrement décarbonné, de part le nucléaire et l'hydroélectrique.
+:::
+
+## Parc nucléaire français {.smaller}
+
+:::: {.columns}
+::: {.column width="60%"}
+![](assets/images/carte_centrales.jpg){.lightbox width=130% fig-align=center}
+:::
+
+::: {.column width="40%"}
+> 57 **tranches** en exploitation.
+>
+> 
+> - Palier **CP0** : 900 MW
+> - Palier **CPY** : 900 MW
+> - Palier **P4** : 1300 MW
+> - Palier **P'4** : 1300 MW
+> - Palier **N4** : 1450 MW
+> - Palier **EPR** : 1600 MW
+> 
+:::
+::::
+
+:::{.caption-long-2}
+**Source :** [https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres {{< iconify fa6-solid link >}}](https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres)
+:::
+
+::: {.callout-tip appearance="simple"}
+
+Une tranche de 900 MW produit en moyenne chaque mois **500 000 MWh**, ce qui correspond à la consommation de **400 000 foyers** environ.
+
+:::
+
+:::{.notes}
+Pour repasser sur le sujet du nucléaire, on a en France un parc important, avec 57 réacteurs, qu'on appelle aussi tranches, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts. Et on a, à gauche, la carte de l'implantation des tranches sur le territoire, à noter qu'il manque Flamanville 3 par contre, mais elle est bien démarrée.
+
+Pour avoir des ordres de grandeur, une tranche de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près
+:::
+
+## Présentation du CNEPE {.smaller}
+
+<br>
+
+Le CNEPE ^[Centre National d'Equipements de Production d'Eléctricité] est un centre d'ingénierie implanté à *Tours*, spécialisé dans la réalisation et la maintenance de la partie conventionnelle des installations nucléaires.
+
+:::: {.columns}
+::: {.column width="50%"}
+![](assets/images/ilot.jpg){.lightbox width=100% fig-align=center}
+:::
+
+::: {.column width="50%"}
+
+::: {.callout-note icon=false}
+
+## Deux grands périmètres d'action du CNEPE
+
+- Ingénierie du Parc en Exploitation :
+    - Ingénierie de l’îlot conventionnel
+    - "Grand Carénage"
+- Développement des projets Nouveau Nucléaire :
+    - 8 projets $\Rightarrow$ EPR2, HPC, SMR^[<u>S</u>mall <u>M</u>odular <u>R</u>eactor], etc.
+
+:::
+:::
+::::
+
+:::{.notes}
+
+Je vous présente le CNEPE parce que c'est le centre d'ingénierie ou j'ai effectué mon stage et dont la majeure partie du travail se concentre sur l'ilot conventionnel d'une installation nucléaire. 
+
+L'ilot conventionnel, qu'on peut visualiser à droite de cette image, regroupe : La source froide, les aéroréfrigérants (les grandes tours caractéristiques du nucléaire), et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.
+
+Plus précisément, les activités du CNEPE se composent de deux grands axes :
+
+- La partie d'ingénierie du parc en exploitation :
+
+    - Dans laquelle les équipes communes du CNEPE pilotent les modifications techniques à apporter sur les équipements côté ilôt conventionnel,
+    - Et le programme de "Grand Carénage", dont le but est d'allonger la durée de vie des installations jusqu'à 60 voire 80 ans.
+
+- Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de réacteurs de troisième génération, à la fois en France (c'est le cas du programme EPR2 et SMR) mais aussi à l'international, c'est le cas avec le projet HPC (Hinkley Point C), que je rementionnerai plus tard.
+:::
+
+# 2 | MISSIONS
+
+*Perte d'armoire de contrôle-commande*
+
+## Architecture I&C {.smaller}
+
+<br>
+
+> **Une installation nucléaire est très complexe** : il faut un pilotage fiable et précis pour gérer tous les paramètres et systèmes nécessaires au fonctionnement de l'ilôt nucléaire et conventionnel.
+
+<br>
+
+:::{.i-c-level-2}
+{{< iconify fa6-solid display >}} **Niveau 2** $\rightarrow$ Interface Homme Machine
+:::
+
+:::{.i-c-level-1}
+{{< iconify fa6-solid toilet-portable >}} **Niveau 1** $\rightarrow$ Fonctions d'automatisme
+:::
+
+:::{.i-c-level-0}
+{{< iconify fa6-solid gears >}} **Niveau 0** $\rightarrow$ Equipements
+:::
+
+
+:::{.notes}
+On en arrive à mon premier sujet de stage : les notes sur les pertes d'armoire de contrôle commande. Avant de parler de ça, je vais présenter ce qu'est le contrôle-commande.
+
+Si on veut faire une analogie, c'est un peu le cerveau et le système nerveux d'une centrale.
+
+**Une centrale c'est très complexe**, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l'ilôt nucléaire et conventionnel.
+
+Tous ces moyens de pilotage sont réunis dans ce qu'on appelle une architecture de contrôle-commande, que je présente ici de manière très très simplifiée.
+
+- Le **Niveau 0** regroupe les équipements comme les capteurs ou les actionneurs qui servent à l'action sur le procédé et à la prise d'informations.
+
+- Le **Niveau 1** c'est le niveau central dans l'architecture de contrôle-commande, c'est là justement qu'on y trouve les fameuses armoires de contrôle commande qui gèrent les régulations de manière automatisée.
+
+- Le **Niveau 2**, au dessus, il permet lui de superviser la tranche à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour lui dire d'arrêter un équipement particulier du niveau 0.
+:::
+
+## Etudes de perte d'armoires (HPC) {.smaller}
+
+<br>
+
+> **Objectif** : Décrire les conséquences fonctionnelles et sûreté quand une armoire de contrôle-commande est perdue pour l'**EPR** d'*Hinkley Point C*.
+
+
+:::: {.columns}
+::: {.column width="50%"}
+![](assets/images/hpc_construction.jpg){.lightbox width=100% fig-align=center}
+:::
+
+::: {.column width="50%"}
+::: {.callout-important icon="false"}
+
+## Difficultés de l'activité
+
+- Nombre de sources de données à croiser,
+- Nombre de notes à fournir,
+- Nombre d'erreurs humaines potentielles,
+- Très fastidieux.
+
+$\rightarrow$ Création d'une application {{< iconify fa6-brands r-project >}} [Shiny]{.shiny-allura} : **HPConnect**
+
+:::
+:::
+::::
+
+:::{.caption-long-2}
+**Source :** [EPR d'Hinkley Point C en construction -- SFEN {{< iconify fa6-solid link >}}](https://www.sfen.org/rgn/decryptage-edf-annonce-un-nouveau-calendrier-pour-les-epr-dhinkley-point-c/)
+:::
+
+:::{.notes}
+L'objectif de ces notes ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l'installation quand on perd une armoire spécifique. Là le périmètre de ces notes c'est l'EPR en construction à Hinkley Point C.
+
+Néanmoins il y a plusieurs difficultés dans cette activité, que j'ai listées ici :
+
+- Beaucoup de sources de données à croiser, dans des formats qui n'ont pas été pensées pour communiquer entre eux,
+- Plus de 120 fiches en tout à fournir au client,
+- Comme le croisement de données c'est une activité qui est pas très stimulante intellectuellement, il y a forcément des erreurs.
+
+Pour toutes ces raisons, l'idée d'un de mes collègues a été d'automatiser la création des notes grâce à une application shiny qui créé en sortie des fiches au format *Word*.
+
+:::
+
+## HPConnect {.smaller}
+
+::: {.panel-tabset}
+
+## {{< iconify fa home >}} Accueil
+
+![](assets/images/home_tab.PNG){.lightbox width=100% fig-align=center}
+
+##  {{< iconify fa6-solid folder-open >}} Table
+
+![](assets/images/table_tab.PNG){.lightbox width=100% fig-align=center}
+
+## {{< iconify fa6-solid file-word >}} Export
+
+![](assets/images/export_tab.PNG){.lightbox width=100% fig-align=center}
+
+## {{< iconify fa6-solid circle-info >}} Information
+
+![](assets/images/info_tab.PNG){.lightbox width=100% fig-align=center}
+
+:::
+
+:::{.notes}
+
+La version que j'ai développée d'HPConnect, va plus loin que la première parce qu'elle intègre notamment :
+
+- Les impacts sureté quand on perd un actionneur ou un capteur,
+- Tout le formalisme de la fiche finale,
+- Elle prémache grandement le travail des ingénieurs pour faire l'analyse fonctionnelle, c'est à dire la partie que l'application ne peut pas faire, mais là où ils ont une réelle plus value.
+
+L'application est déployée sur une machine virtuelle, et donc n'importe qui chez EDF peut y accéder sans avoir à installer Rstudio et récupérer un fichier zip sorti d'un recoin sombre pour faire tourner l'appli, et l'interface ressemble à ça :
+
+L'onglet **Table** va permettre de sélectionner une armoire et une catégorie pour lister les pertes de cette catégorie dans le tableau noirci, en dessous.
+
+L'onglet **Export** il a pour objectif de générer une fiche par armoire, subdivisée en systèmes et en catégories (capteurs, alarmes, informations, etc.)
+
+Et enfin l'onglet **Information** a pour but de recenser les données qui ont été utilisées, d'où elles proviennent, quel est leur type, etc.
+
+A savoir que, toutes ces données ne sont pas ingérées directement dans l'application, il y a un package R que j'ai crée qui dispose de fonctions qui permettent de combiner les sources de manière propre, avec l'ensemble de la logique métier qui est documentée.
+:::
+
+## Exemple de Fiche de sortie
+
+:::: {.columns}
+::: {.column width="50%"}
+![](assets/images/sheet_ic_loss.png){.lightbox width=90% fig-align=center}
+:::
+
+::: {.column width="50%"}
+![](assets/images/report_detailed_loss.PNG){.lightbox width=85% fig-align=center}
+:::
+
+::::
+
+:::{.notes}
+Voilà à quoi ressemble le livrable final, avec une partie de remise en contexte, suivie d'informations spécifiques à l'armoire, et à droite, on a la perte détaillée d'un système.
+:::
+
+## Gains estimés -- HPConnect {.smaller}
+
+```{r}
+roi_data_hpconnect <- tibble(
+    time_gain = "~ 4400 heures",
+    financial_gain = 330000,
+    quality_gain = "square-check",
+) |> mutate(quality_gain = purrr::map(fontawesome::fa(quality_gain, "green"), html))
+
+gt(roi_data_hpconnect) |> 
+    tab_options(
+        table.font.size = 30,
+        table.width=pct(100),
+        column_labels.background.color = "#003871"
+        ) |>
+    cols_align("center") |>
+    fmt_currency(
+        columns=financial_gain,
+        currency="euro",
+        placement="right",
+        incl_space=TRUE
+    ) |>
+    cols_label(
+        time_gain = md("**Gain de Temps**"),
+        financial_gain = md("**Gain Financier**"),
+        quality_gain = md("**Gain de Qualité**")
+    ) |>
+    tab_style(
+    style = cell_borders(
+        sides = c("left", "right"),
+        color = "lightgray",
+        weight = px(2),
+        style = "solid"
+    ),
+    locations = cells_body()
+    ) |>
+    tab_footnote(
+        md("Sur la base d'un calcul de 111 fiches $\\times$ ~ 40 heures"),
+        locations = cells_body(columns = time_gain, rows = 1)
+    ) |>
+    tab_footnote(
+        md("Sur la base du coût d'un ETP (~ 120k €) correspondant à 1600 heures "),
+        locations = cells_body(columns = financial_gain, rows = 1)
+    )
+```
+
+**Gain de qualité :**
+
+- Evacuation des erreurs humaines,
+- Récupération et mise en forme de la donnée brute *(raw data)*,
+- Facilité de mise à jour de la donnée dans l'outil.
+
+
+:::{.notes}
+
+Pour conclure sur ce premier sujet, parler des gains.
+
+Décomposition en 2 gains : un gain de temps qui se traduit en un gain financier et surtout aussi un gain de qualité pour le livrable final.
+
+Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu'on peut quantifier à 40 heures de travail économisé par fiche. L'estimation vaut ce qu'elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur importants.
+:::
+
+
+# 2 | MISSIONS
+
+*Post-traitement de résultats de simulation*  
+
+## Simulateur
+
+Le simulateur d’une tranche permet d’étudier le comportement dynamique théorique d’une unité de production. 
+
+Pour que le modèle soit le plus réaliste possible, tous les systèmes de la tranche sont modélisés, la logique de contrôle-commande est répliquée et les modèles hydrauliques sont chargés.
+
+Le simulateur permet ainsi une représentation immédiate de l’installation et des phénomènes physiques
+
+## ViZiR
+
+::: {.callout-important}
+
+## Ceci est important
+
+Dnas le cadre de vizir
+
+Plusieurs entités ont manifesté leur  désir d'utiliser ViZir.
+
+:::
+
+Parler des fonctionnalités principales, de la reproductibilité de l'étude grâce au fichier de paramètres json qu'on recharge
+
+
+## Migration vers python
+
+Stack technique
+
+- `plotly`
+- `polars`
+- `streamlit`
+
+Utilisation avancée : `session_state` de streamlit
+
+parler des tests unitaires.
+
+## Vizir data exemple csv {.smaller}
+
+```{r}
+csv_simu <- tibble(
+    TpsSimu = c(100, 300, 500, 700),
+    `3XQE2244.aValeur` = c(81.125, 80.129, 80.128, 80.124),
+    `3AGP7167.bValeur` = c(81.125, 80.129, 80.128, 80.124),
+    `3PIJ1942.cValeur` = c(81.125, 80.129, 80.128, 80.124),
+)
+
+reactable(csv_simu, rowStyle = function(index) {
+    list(`border-top` = "thin solid gray")
+})
+```
+
+{{< iconify fa6-solid file-csv >}}
+
+## Grapheur vizir
+
+![](assets/vizir_graphing.png){.lightbox width=100% fig-align=center}
+
+:::{.notes}
+Aspect de customisation avancé : titre, couleur, taille du titre, min/max, le type de tracé. 
+:::
+
+## Rechargement d'une étude
+
+
+# 3 | CONCLUSION
+
+## Une slide pour conclure {.smaller}
+
+expérience professionnelle très enrichissante à plusieurs égards.
+
+J’ai eu l’opportunité de travailler sur deux sujets différents mêlant des
+compétences techniques variées, notamment en python, R, Git, et bien d’autres outils, tout en m’imposant un cadre rigoureux en matière d’ingénierie logicielle. 
+
+Ces six mois m’ont permis non seulement de monter en compétence dans le domaine de la Data,
+
+$\rightarrow$ Le Nucléaire : un domaine complexe et incroyablement intéressant, en plein essor
+
+Au-delà des compétences purement techniques, j’ai amélioré mes compétences personnelles telles que la gestion et l’organisation de mon temps de travail, ce qui m’a été indispensable pour mener à bien mes deux projets tout en respectant les délais. 
+
+En échangeant régulièrement avec des collègues
+d’autres unités dans le cadre de ces missions, j’ai également renforcé mes capacités de communication. Les présentations lors d’ateliers dédiés à la Direction Technique ainsi qu’au « Club Simu » (une
+communauté d’ingénieurs utilisant les simulateurs) m’ont aussi permis de gagner en crédibilité dans
+mon travail, via le renforcement de mes facultés de synthèse.
+L’application ViZiR constitue une base solide susceptible d’accueillir d’autres fonctionnalités dans
+les prochains mois. Le cœur de l’outil est à la fois robuste et modulaire, ce qui permettra à un futur
+repreneur de déployer l’application pour d’autres usages opérationnels, tout en garantissant une
+maintenance facilitée.
+Finalement, un des meilleurs indicateurs de la réussite de ce stage est le fait que les applications
+que j’ai développées sont désormais utilisées et valorisées. En effet, le spectre d’utilisation d’un outil comme ViZiR est assez large (nouveau nucléaire, ingénierie du parc en exploitation, etc.). Pour
+HPConnect, il serait tout à fait envisageable qu’EDF transpose la logique au projet EPR2, avec l’avantage non négligeable de disposer de toute la documentation et de la logique métier
+
+## {.center}
+
+::: {.r-fit-text}
+MERCI DE VOTRE ATTENTION !
+:::
+
+<hr class="special-blue">
+
+## Annexe - R packages
+
+- `{dplyr}` 
+- `{janitor}`
+etc.
+
+## Annexe - Code {.smaller}
+
+<br>
+
+```python
+def initialize_states() -> None:
+    """
+    Fonction initialisant tous les session_states par onglet
+
+    L'interactivité d'une application Streamlit est liée au fait que chaque 
+    action utilisateur ré-éxécute entièrement le script de l'application.
+    Cependant, ce comportement n'est pas toujours souhaitable et peut 
+    entraîner de nombreuses difficultés dans le développement.
+
+    => Pour pallier à ce problème,`st.session_state` permet de stocker et 
+    partager des variables entre chaque ré-éxécution du script.
+
+    En pratique, cette fonction permet donc d'initialiser la configuration 
+    de tous les input widgets.
+    """
+
+    _states_sidebar_import()
+    _states_conversion()
+    _states_graph()
+    _states_admin()
+```
+
+## Présentation du groupe FGP {.smaller}
+
+![](assets/detu_services.PNG){.lightbox width=100% fig-align=center}
+
+::: {.callout-tip icon=false}
+
+## **FGP -- Fonctionnement Général et Performance** 
+
+Assurer la cohérence d'ensemble de l'îlot conventionnel des tranches nucléaires pour un fonctionnement performant.
+:::
+
+**Missions :**
+
+- Optimisation des performances générales de la Salle des Machines, 
+- Etudes fonctionnelles transverses,
+- Etudes de fonctionnement sur les grands transitoires.
+
+:::{.notes}
+Au sein du CNEPE, j'ai travaillé dans le service Fonctionnement, et plus précisément dans le groupe Fonctionnement Général et Performance.
+
+***
+
+Alors y'a plusieurs raisons qui expliquent cette part très elevé, mais une que j'ai choisi de mentionner c'est l'aspect d'approvisionnement électrique en continu que permet le nucléaire. Typiquement, à minuit vous pouvez produire la même quantité d'eléctricité qu'à midi. 
+
+Par contre, essayer de faire la même chose avec des panneaux photovoltaiques, ça marche pas trop.
+
+Enuite, en deuxième position dans le mix avec à peu près 10%, vous avez l'hydroélectrique. Un des intérêts majeurs de ce type d'énergie c'est sa flexibilité : elle s'adapte très très bien aux variations de la demande quand il y a des pics de consommation. 
+
+Autres gains : tout le process est documenté
+:::

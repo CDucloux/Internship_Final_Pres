@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<script src="internship_pres_files/libs/clipboard/clipboard.min.js"></script>
+<script src="internship_pres_files/libs/quarto-html/tabby.min.js"></script>
+<script src="internship_pres_files/libs/quarto-html/popper.min.js"></script>
+<script src="internship_pres_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="internship_pres_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="internship_pres_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="internship_pres_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="internship_pres_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="internship_pres_files/libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script src="internship_pres_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="internship_pres_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="internship_pres_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.551">
+
+  <meta name="author" content="Corentin Ducloux – Master 2 Mécen">
+  <title>Pertes d’armoire de contrôle-commande et post-traitement de résultats de simulation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="internship_pres_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="internship_pres_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #282a36; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #ff79c6; } /* Annotation */
+    code span.at { color: #ff79c6; } /* Attribute */
+    code span.bn { color: #bd93f9; } /* BaseN */
+    code span.bu { color: #8be9fd; } /* BuiltIn */
+    code span.cf { color: #ff79c6; } /* ControlFlow */
+    code span.ch { color: #f1fa8c; } /* Char */
+    code span.cn { color: #bd93f9; font-weight: bold; } /* Constant */
+    code span.co { color: #6272a4; } /* Comment */
+    code span.cv { color: #8be9fd; } /* CommentVar */
+    code span.do { color: #ffb86c; } /* Documentation */
+    code span.dt { color: #8be9fd; font-style: italic; } /* DataType */
+    code span.dv { color: #bd93f9; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #8be9fd; } /* Extension */
+    code span.fl { color: #bd93f9; } /* Float */
+    code span.fu { color: #50fa7b; } /* Function */
+    code span.im { color: #ff79c6; } /* Import */
+    code span.in { color: #f1fa8c; } /* Information */
+    code span.kw { color: #ff79c6; } /* Keyword */
+    code span.op { color: #f8f8f2; } /* Operator */
+    code span.ot { color: #50fa7b; } /* Other */
+    code span.pp { color: #ff79c6; } /* Preprocessor */
+    code span.re { color: #8be9fd; } /* RegionMarker */
+    code span.sc { color: #ff79c6; } /* SpecialChar */
+    code span.ss { color: #f1fa8c; } /* SpecialString */
+    code span.st { color: #f1fa8c; } /* String */
+    code span.va { color: #8be9fd; } /* Variable */
+    code span.vs { color: #f1fa8c; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="internship_pres_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link href="internship_pres_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="internship_pres_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="internship_pres_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="internship_pres_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="internship_pres_files/libs/core-js-2.5.3/shim.min.js"></script>
+
+  <script src="internship_pres_files/libs/react-18.2.0/react.min.js"></script>
+
+  <script src="internship_pres_files/libs/react-18.2.0/react-dom.min.js"></script>
+
+  <script src="internship_pres_files/libs/reactwidget-1.0.0/react-tools.js"></script>
+
+  <link href="internship_pres_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+  <script src="internship_pres_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <link href="internship_pres_files/libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+
+  <script src="internship_pres_files/libs/reactable-binding-0.4.4/reactable.js"></script>
+
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-notes="Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d’études. Pendant ce stage j’ai eu deux sujets principaux à aborder : un qui traite de problématiques I&amp;C et l’autre qui est plus axé simulateur. Si ces termes ne vous parlent pas pour l’instant, il seront explicités par la suite. Je remercie évidemment mes deux tuteurs, Alexandre Padet et Grégoire Bouvet pour leur accompagnement." class="quarto-title-block center">
+  <h1 class="title"><strong>Pertes d’armoire de contrôle-commande et post-traitement de résultats de simulation</strong></h1>
+  <p class="subtitle"><img data-src="assets/images/UT_logo.jpg" style="width:45.0%"> <img data-src="assets/images/MECEN_logo.png" style="width:23.0%"><br>
+</p><hr class="divider"><p></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+<strong>Corentin Ducloux</strong> – Master 2 Mécen 
+</div>
+</div>
+</div>
+
+  <p class="date">13/09/2024</p>
+</section>
+<section id="table-des-matières" class="slide level2 smaller">
+<h2>Table des matières</h2>
+<p><br></p>
+<p><a href="/#introduction">1 | INTRODUCTION</a></p>
+<ul>
+<li><a href="#/présentation-dedf" class="no-color">Présentation d’EDF</a></li>
+<li><a href="#/quelques-chiffres-clés-2023">Quelques chiffres clés (2023)</a></li>
+<li><a href="#/mix-électrique-dedf-en-france">Mix électrique d’EDF en France</a></li>
+<li><a href="#/parc-nucléaire-français">Parc nucléaire français</a></li>
+<li><a href="#/présentation-du-cnepe">Présentation du CNEPE</a></li>
+</ul>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>1 | INTRODUCTION</h1>
+
+</section>
+<section id="présentation-dedf" class="slide level2 smaller">
+<h2>Présentation d’EDF</h2>
+<p><br></p>
+<blockquote>
+<p>EDF est une société française de <strong>production</strong> et de <strong>fourniture</strong> d’électricité.</p>
+<p><span class="math inline">\(\rightarrow\)</span> <iconify-icon role="img" inline="" icon="fa6-solid:calendar" aria-label="Icon calendar from fa6-solid Iconify.design set." title="Icon calendar from fa6-solid Iconify.design set."></iconify-icon> <strong>Date de création</strong> : 1946</p>
+<p><span class="math inline">\(\rightarrow\)</span> <iconify-icon role="img" inline="" icon="octicon:law-16" aria-label="Icon law-16 from octicon Iconify.design set." title="Icon law-16 from octicon Iconify.design set."></iconify-icon> <strong>Statut juridique</strong> : Monopole d’Etat (EPIC) <a href="#/footnotes" class="footnote-ref" id="fnref1" role="doc-noteref" data-footnote-href="#/fn1" onclick=""><sup>1</sup></a> puis Société Anonyme <a href="#/footnotes" class="footnote-ref" id="fnref2" role="doc-noteref" data-footnote-href="#/fn2" onclick=""><sup>2</sup></a></p>
+</blockquote>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/edf_logo.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="assets/images/edf_logo.PNG" class="quarto-figure quarto-figure-center" style="width:50.0%"></a></p>
+</figure>
+</div>
+<aside class="notes">
+<p>Je pense ne pas me tromper en affirmant que la majorité d’entre vous connait déjà EDF, puisqu’on est tous amené à un moment ou à un autre à payer des factures d’électricité dans notre vie. Mais pour ceux qui s’éclairent encore à la bougie,</p>
+<p>EDF c’est une société française de production d’electricité, et c’est aussi un fournisseur, que ce soit pour les particuliers ou les entreprises.</p>
+<p>Pour un peu d’histoire, EDF a été crée en 1946 en tant que Monopole d’Etat, et c’est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen que c’est devenu une société anonyme, qui n’est plus en situation de monopole au niveau de la fourniture d’électricité, c’est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.</p>
+<p>Alors c’est une Société Anonyme mais, quand même, aujourd’hui, 100% du capital est détenu par l’Etat Français, donc il y a une forte mission de service public derrière.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside></aside></section>
+<section id="quelques-chiffres-clés-2023" class="slide level2 smaller">
+<h2>Quelques chiffres clés (2023)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/edf_kpi.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="assets/images/edf_kpi.PNG" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+</figure>
+</div>
+<div class="caption">
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/edf-en-bref">https://www.edf.fr/groupe-edf/edf-en-bref <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+</div>
+<aside class="notes">
+<p>Quelques chiffres clés concernant le groupe.</p>
+<p>Générant un chiffre d’affaires de 140 milliards d’euros et avec un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c’est particulièrement vrai en France et en Europe.</p>
+<p>Petit apparté aussi sur les 467 Terrawatt heure de production mondiale</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="mix-électrique-dedf-en-france" class="slide level2 smaller">
+<h2>Mix électrique d’EDF en France</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/fr_edf_twh.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="assets/images/fr_edf_twh.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <br></p>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Remarques</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Prépondérance du nucléaire :
+<ul>
+<li><strong>Intérêt</strong> : approvisionnement en continu</li>
+</ul></li>
+<li>Part importante d’hydroélectrique :
+<ul>
+<li><strong>Intérêt</strong> : levier d’ajustement</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> <strong>♻️ Plus de 90% d’électricité bas carbone.</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="caption-long">
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat">https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+</div>
+<aside class="notes">
+<p>Sur ces 467 TerraWatts heure de production mondiale du groupe, les 3/4 à peu près sont produits en France.</p>
+<p>On voit surtout aussi dans le mix eléctrique français l’importance considérable de l’énergie d’origine nucléaire.</p>
+<p>Au delà de ça on voit en fait que notre mix électrique en France il est de facto presque entièrement décarbonné, de part le nucléaire et l’hydroélectrique.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="parc-nucléaire-français" class="slide level2 smaller">
+<h2>Parc nucléaire français</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/carte_centrales.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="assets/images/carte_centrales.jpg" class="quarto-figure quarto-figure-center" style="width:130.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<blockquote>
+<p>57 <strong>tranches</strong> en exploitation.</p>
+<ul>
+<li>Palier <strong>CP0</strong> : 900 MW</li>
+<li>Palier <strong>CPY</strong> : 900 MW</li>
+<li>Palier <strong>P4</strong> : 1300 MW</li>
+<li>Palier <strong>P’4</strong> : 1300 MW</li>
+<li>Palier <strong>N4</strong> : 1450 MW</li>
+<li>Palier <strong>EPR</strong> : 1600 MW</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div class="caption-long-2">
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres">https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+</div>
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Une tranche de 900 MW produit en moyenne chaque mois <strong>500 000 MWh</strong>, ce qui correspond à la consommation de <strong>400 000 foyers</strong> environ.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Pour repasser sur le sujet du nucléaire, on a en France un parc important, avec 57 réacteurs, qu’on appelle aussi tranches, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts. Et on a, à gauche, la carte de l’implantation des tranches sur le territoire, à noter qu’il manque Flamanville 3 par contre, mais elle est bien démarrée.</p>
+<p>Pour avoir des ordres de grandeur, une tranche de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="présentation-du-cnepe" class="slide level2 smaller">
+<h2>Présentation du CNEPE</h2>
+<p><br></p>
+<p>Le CNEPE <a href="#/footnotes" class="footnote-ref" id="fnref3" role="doc-noteref" data-footnote-href="#/fn3" onclick=""><sup>3</sup></a> est un centre d’ingénierie implanté à <em>Tours</em>, spécialisé dans la réalisation et la maintenance de la partie conventionnelle des installations nucléaires.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/ilot.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="assets/images/ilot.jpg" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-note no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Deux grands périmètres d’action du CNEPE</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Ingénierie du Parc en Exploitation :
+<ul>
+<li>Ingénierie de l’îlot conventionnel</li>
+<li>“Grand Carénage”</li>
+</ul></li>
+<li>Développement des projets Nouveau Nucléaire :
+<ul>
+<li>8 projets <span class="math inline">\(\Rightarrow\)</span> EPR2, HPC, SMR<a href="#/footnotes" class="footnote-ref" id="fnref4" role="doc-noteref" data-footnote-href="#/fn4" onclick=""><sup>4</sup></a>, etc.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Je vous présente le CNEPE parce que c’est le centre d’ingénierie ou j’ai effectué mon stage et dont la majeure partie du travail se concentre sur l’ilot conventionnel d’une installation nucléaire.</p>
+<p>L’ilot conventionnel, qu’on peut visualiser à droite de cette image, regroupe : La source froide, les aéroréfrigérants (les grandes tours caractéristiques du nucléaire), et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.</p>
+<p>Plus précisément, les activités du CNEPE se composent de deux grands axes :</p>
+<ul>
+<li><p>La partie d’ingénierie du parc en exploitation :</p>
+<ul>
+<li>Dans laquelle les équipes communes du CNEPE pilotent les modifications techniques à apporter sur les équipements côté ilôt conventionnel,</li>
+<li>Et le programme de “Grand Carénage”, dont le but est d’allonger la durée de vie des installations jusqu’à 60 voire 80 ans.</li>
+</ul></li>
+<li><p>Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de réacteurs de troisième génération, à la fois en France (c’est le cas du programme EPR2 et SMR) mais aussi à l’international, c’est le cas avec le projet HPC (Hinkley Point C), que je rementionnerai plus tard.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside></aside></section></section>
+<section>
+<section id="missions" class="title-slide slide level1 center">
+<h1>2 | MISSIONS</h1>
+<p><em>Perte d’armoire de contrôle-commande</em></p>
+</section>
+<section id="architecture-ic" class="slide level2 smaller">
+<h2>Architecture I&amp;C</h2>
+<p><br></p>
+<blockquote>
+<p><strong>Une installation nucléaire est très complexe</strong> : il faut un pilotage fiable et précis pour gérer tous les paramètres et systèmes nécessaires au fonctionnement de l’ilôt nucléaire et conventionnel.</p>
+</blockquote>
+<p><br></p>
+<div class="i-c-level-2">
+<p><iconify-icon role="img" inline="" icon="fa6-solid:display" aria-label="Icon display from fa6-solid Iconify.design set." title="Icon display from fa6-solid Iconify.design set."></iconify-icon> <strong>Niveau 2</strong> <span class="math inline">\(\rightarrow\)</span> Interface Homme Machine</p>
+</div>
+<div class="i-c-level-1">
+<p><iconify-icon role="img" inline="" icon="fa6-solid:toilet-portable" aria-label="Icon toilet-portable from fa6-solid Iconify.design set." title="Icon toilet-portable from fa6-solid Iconify.design set."></iconify-icon> <strong>Niveau 1</strong> <span class="math inline">\(\rightarrow\)</span> Fonctions d’automatisme</p>
+</div>
+<div class="i-c-level-0">
+<p><iconify-icon role="img" inline="" icon="fa6-solid:gears" aria-label="Icon gears from fa6-solid Iconify.design set." title="Icon gears from fa6-solid Iconify.design set."></iconify-icon> <strong>Niveau 0</strong> <span class="math inline">\(\rightarrow\)</span> Equipements</p>
+</div>
+<aside class="notes">
+<p>On en arrive à mon premier sujet de stage : les notes sur les pertes d’armoire de contrôle commande. Avant de parler de ça, je vais présenter ce qu’est le contrôle-commande.</p>
+<p>Si on veut faire une analogie, c’est un peu le cerveau et le système nerveux d’une centrale.</p>
+<p><strong>Une centrale c’est très complexe</strong>, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l’ilôt nucléaire et conventionnel.</p>
+<p>Tous ces moyens de pilotage sont réunis dans ce qu’on appelle une architecture de contrôle-commande, que je présente ici de manière très très simplifiée.</p>
+<ul>
+<li><p>Le <strong>Niveau 0</strong> regroupe les équipements comme les capteurs ou les actionneurs qui servent à l’action sur le procédé et à la prise d’informations.</p></li>
+<li><p>Le <strong>Niveau 1</strong> c’est le niveau central dans l’architecture de contrôle-commande, c’est là justement qu’on y trouve les fameuses armoires de contrôle commande qui gèrent les régulations de manière automatisée.</p></li>
+<li><p>Le <strong>Niveau 2</strong>, au dessus, il permet lui de superviser la tranche à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour lui dire d’arrêter un équipement particulier du niveau 0.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="etudes-de-perte-darmoires-hpc" class="slide level2 smaller">
+<h2>Etudes de perte d’armoires (HPC)</h2>
+<p><br></p>
+<blockquote>
+<p><strong>Objectif</strong> : Décrire les conséquences fonctionnelles et sûreté quand une armoire de contrôle-commande est perdue pour l’<strong>EPR</strong> d’<em>Hinkley Point C</em>.</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/hpc_construction.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="assets/images/hpc_construction.jpg" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-important no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Difficultés de l’activité</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Nombre de sources de données à croiser,</li>
+<li>Nombre de notes à fournir,</li>
+<li>Nombre d’erreurs humaines potentielles,</li>
+<li>Très fastidieux.</li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> Création d’une application <iconify-icon role="img" inline="" icon="fa6-brands:r-project" aria-label="Icon r-project from fa6-brands Iconify.design set." title="Icon r-project from fa6-brands Iconify.design set."></iconify-icon> <span class="shiny-allura">Shiny</span> : <strong>HPConnect</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="caption-long-2">
+<p><strong>Source :</strong> <a href="https://www.sfen.org/rgn/decryptage-edf-annonce-un-nouveau-calendrier-pour-les-epr-dhinkley-point-c/">EPR d’Hinkley Point C en construction – SFEN <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+</div>
+<aside class="notes">
+<p>L’objectif de ces notes ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l’installation quand on perd une armoire spécifique. Là le périmètre de ces notes c’est l’EPR en construction à Hinkley Point C.</p>
+<p>Néanmoins il y a plusieurs difficultés dans cette activité, que j’ai listées ici :</p>
+<ul>
+<li>Beaucoup de sources de données à croiser, dans des formats qui n’ont pas été pensées pour communiquer entre eux,</li>
+<li>Plus de 120 fiches en tout à fournir au client,</li>
+<li>Comme le croisement de données c’est une activité qui est pas très stimulante intellectuellement, il y a forcément des erreurs.</li>
+</ul>
+<p>Pour toutes ces raisons, l’idée d’un de mes collègues a été d’automatiser la création des notes grâce à une application shiny qui créé en sortie des fiches au format <em>Word</em>.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="hpconnect" class="slide level2 smaller">
+<h2>HPConnect</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1"><iconify-icon role="img" inline="" icon="fa:home" aria-label="Icon home from fa Iconify.design set." title="Icon home from fa Iconify.design set."></iconify-icon> Accueil</a></li><li><a href="#tabset-1-2"><iconify-icon role="img" inline="" icon="fa6-solid:folder-open" aria-label="Icon folder-open from fa6-solid Iconify.design set." title="Icon folder-open from fa6-solid Iconify.design set."></iconify-icon> Table</a></li><li><a href="#tabset-1-3"><iconify-icon role="img" inline="" icon="fa6-solid:file-word" aria-label="Icon file-word from fa6-solid Iconify.design set." title="Icon file-word from fa6-solid Iconify.design set."></iconify-icon> Export</a></li><li><a href="#tabset-1-4"><iconify-icon role="img" inline="" icon="fa6-solid:circle-info" aria-label="Icon circle-info from fa6-solid Iconify.design set." title="Icon circle-info from fa6-solid Iconify.design set."></iconify-icon> Information</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/home_tab.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="assets/images/home_tab.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/table_tab.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="assets/images/table_tab.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/export_tab.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="assets/images/export_tab.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/info_tab.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img data-src="assets/images/info_tab.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>La version que j’ai développée d’HPConnect, va plus loin que la première parce qu’elle intègre notamment :</p>
+<ul>
+<li>Les impacts sureté quand on perd un actionneur ou un capteur,</li>
+<li>Tout le formalisme de la fiche finale,</li>
+<li>Elle prémache grandement le travail des ingénieurs pour faire l’analyse fonctionnelle, c’est à dire la partie que l’application ne peut pas faire, mais là où ils ont une réelle plus value.</li>
+</ul>
+<p>L’application est déployée sur une machine virtuelle, et donc n’importe qui chez EDF peut y accéder sans avoir à installer Rstudio et récupérer un fichier zip sorti d’un recoin sombre pour faire tourner l’appli, et l’interface ressemble à ça :</p>
+<p>L’onglet <strong>Table</strong> va permettre de sélectionner une armoire et une catégorie pour lister les pertes de cette catégorie dans le tableau noirci, en dessous.</p>
+<p>L’onglet <strong>Export</strong> il a pour objectif de générer une fiche par armoire, subdivisée en systèmes et en catégories (capteurs, alarmes, informations, etc.)</p>
+<p>Et enfin l’onglet <strong>Information</strong> a pour but de recenser les données qui ont été utilisées, d’où elles proviennent, quel est leur type, etc.</p>
+<p>A savoir que, toutes ces données ne sont pas ingérées directement dans l’application, il y a un package R que j’ai crée qui dispose de fonctions qui permettent de combiner les sources de manière propre, avec l’ensemble de la logique métier qui est documentée.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exemple-de-fiche-de-sortie" class="slide level2">
+<h2>Exemple de Fiche de sortie</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/sheet_ic_loss.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="assets/images/sheet_ic_loss.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/report_detailed_loss.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img data-src="assets/images/report_detailed_loss.PNG" class="quarto-figure quarto-figure-center" style="width:85.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Voilà à quoi ressemble le livrable final, avec une partie de remise en contexte, suivie d’informations spécifiques à l’armoire, et à droite, on a la perte détaillée d’un système.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gains-estimés-hpconnect" class="slide level2 smaller">
+<h2>Gains estimés – HPConnect</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="hisietsgwi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hisietsgwi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hisietsgwi thead, #hisietsgwi tbody, #hisietsgwi tfoot, #hisietsgwi tr, #hisietsgwi td, #hisietsgwi th {
+  border-style: none;
+}
+
+#hisietsgwi p {
+  margin: 0;
+  padding: 0;
+}
+
+#hisietsgwi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hisietsgwi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hisietsgwi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hisietsgwi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #003871;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hisietsgwi .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #003871;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hisietsgwi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hisietsgwi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hisietsgwi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hisietsgwi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hisietsgwi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hisietsgwi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hisietsgwi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hisietsgwi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hisietsgwi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hisietsgwi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hisietsgwi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hisietsgwi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hisietsgwi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hisietsgwi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hisietsgwi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hisietsgwi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hisietsgwi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hisietsgwi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hisietsgwi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hisietsgwi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hisietsgwi .gt_left {
+  text-align: left;
+}
+
+#hisietsgwi .gt_center {
+  text-align: center;
+}
+
+#hisietsgwi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hisietsgwi .gt_font_normal {
+  font-weight: normal;
+}
+
+#hisietsgwi .gt_font_bold {
+  font-weight: bold;
+}
+
+#hisietsgwi .gt_font_italic {
+  font-style: italic;
+}
+
+#hisietsgwi .gt_super {
+  font-size: 65%;
+}
+
+#hisietsgwi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hisietsgwi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hisietsgwi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hisietsgwi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hisietsgwi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hisietsgwi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hisietsgwi .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Gain de Temps</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Gain de Temps</strong></th>
+<th id="<strong>Gain Financier</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Gain Financier</strong></th>
+<th id="<strong>Gain de Qualité</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Gain de Qualité</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="time_gain" style="border-left-width: 2px; border-left-style: solid; border-left-color: lightgray; border-right-width: 2px; border-right-style: solid; border-right-color: lightgray">~ 4400 heures<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></td>
+<td class="gt_row gt_center" headers="financial_gain" style="border-left-width: 2px; border-left-style: solid; border-left-color: lightgray; border-right-width: 2px; border-right-style: solid; border-right-color: lightgray">330,000.00 €<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></td>
+<td class="gt_row gt_center" headers="quality_gain" style="border-left-width: 2px; border-left-style: solid; border-left-color: lightgray; border-right-width: 2px; border-right-style: solid; border-right-color: lightgray"><svg aria-hidden="true" role="img" viewbox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;">
+<path d="M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path>
+</svg></td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Sur la base d’un calcul de 111 fiches \(\times\) ~ 40 heures</td>
+</tr>
+<tr class="odd">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Sur la base du coût d’un ETP (~ 120k €) correspondant à 1600 heures</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p><strong>Gain de qualité :</strong></p>
+<ul>
+<li>Evacuation des erreurs humaines,</li>
+<li>Récupération et mise en forme de la donnée brute <em>(raw data)</em>,</li>
+<li>Facilité de mise à jour de la donnée dans l’outil.</li>
+</ul>
+<aside class="notes">
+<p>Pour conclure sur ce premier sujet, parler des gains.</p>
+<p>Décomposition en 2 gains : un gain de temps qui se traduit en un gain financier et surtout aussi un gain de qualité pour le livrable final.</p>
+<p>Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu’on peut quantifier à 40 heures de travail économisé par fiche. L’estimation vaut ce qu’elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur importants.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="missions-1" class="title-slide slide level1 center">
+<h1>2 | MISSIONS</h1>
+<p><em>Post-traitement de résultats de simulation</em></p>
+</section>
+<section id="simulateur" class="slide level2">
+<h2>Simulateur</h2>
+<p>Le simulateur d’une tranche permet d’étudier le comportement dynamique théorique d’une unité de production.</p>
+<p>Pour que le modèle soit le plus réaliste possible, tous les systèmes de la tranche sont modélisés, la logique de contrôle-commande est répliquée et les modèles hydrauliques sont chargés.</p>
+<p>Le simulateur permet ainsi une représentation immédiate de l’installation et des phénomènes physiques</p>
+</section>
+<section id="vizir" class="slide level2">
+<h2>ViZiR</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ceci est important</strong></p>
+</div>
+<div class="callout-content">
+<p>Dnas le cadre de vizir</p>
+<p>Plusieurs entités ont manifesté leur désir d’utiliser ViZir.</p>
+</div>
+</div>
+</div>
+<p>Parler des fonctionnalités principales, de la reproductibilité de l’étude grâce au fichier de paramètres json qu’on recharge</p>
+</section>
+<section id="migration-vers-python" class="slide level2">
+<h2>Migration vers python</h2>
+<p>Stack technique</p>
+<ul>
+<li><code>plotly</code></li>
+<li><code>polars</code></li>
+<li><code>streamlit</code></li>
+</ul>
+<p>Utilisation avancée : <code>session_state</code> de streamlit</p>
+<p>parler des tests unitaires.</p>
+</section>
+<section id="vizir-data-exemple-csv" class="slide level2 smaller">
+<h2>Vizir data exemple csv</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-73b329b2df6532455c1a" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-73b329b2df6532455c1a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"TpsSimu":[100,300,500,700],"3XQE2244.aValeur":[81.125,80.129,80.128,80.124],"3AGP7167.bValeur":[81.125,80.129,80.128,80.124],"3PIJ1942.cValeur":[81.125,80.129,80.128,80.124]},"columns":[{"id":"TpsSimu","name":"TpsSimu","type":"numeric"},{"id":"3XQE2244.aValeur","name":"3XQE2244.aValeur","type":"numeric"},{"id":"3AGP7167.bValeur","name":"3AGP7167.bValeur","type":"numeric"},{"id":"3PIJ1942.cValeur","name":"3PIJ1942.cValeur","type":"numeric"}],"rowStyle":[{"border-top":"thin solid gray"},{"border-top":"thin solid gray"},{"border-top":"thin solid gray"},{"border-top":"thin solid gray"}],"dataKey":"815b6c7a8f40c6fe27338052f08129bc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><iconify-icon role="img" inline="" icon="fa6-solid:file-csv" aria-label="Icon file-csv from fa6-solid Iconify.design set." title="Icon file-csv from fa6-solid Iconify.design set."></iconify-icon></p>
+</section>
+<section id="grapheur-vizir" class="slide level2">
+<h2>Grapheur vizir</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/vizir_graphing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="assets/vizir_graphing.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+<aside class="notes">
+<p>Aspect de customisation avancé : titre, couleur, taille du titre, min/max, le type de tracé.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="rechargement-dune-étude" class="slide level2">
+<h2>Rechargement d’une étude</h2>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>3 | CONCLUSION</h1>
+
+</section>
+<section id="une-slide-pour-conclure" class="slide level2 smaller">
+<h2>Une slide pour conclure</h2>
+<p>expérience professionnelle très enrichissante à plusieurs égards.</p>
+<p>J’ai eu l’opportunité de travailler sur deux sujets différents mêlant des compétences techniques variées, notamment en python, R, Git, et bien d’autres outils, tout en m’imposant un cadre rigoureux en matière d’ingénierie logicielle.</p>
+<p>Ces six mois m’ont permis non seulement de monter en compétence dans le domaine de la Data,</p>
+<p><span class="math inline">\(\rightarrow\)</span> Le Nucléaire : un domaine complexe et incroyablement intéressant, en plein essor</p>
+<p>Au-delà des compétences purement techniques, j’ai amélioré mes compétences personnelles telles que la gestion et l’organisation de mon temps de travail, ce qui m’a été indispensable pour mener à bien mes deux projets tout en respectant les délais.</p>
+<p>En échangeant régulièrement avec des collègues d’autres unités dans le cadre de ces missions, j’ai également renforcé mes capacités de communication. Les présentations lors d’ateliers dédiés à la Direction Technique ainsi qu’au « Club Simu » (une communauté d’ingénieurs utilisant les simulateurs) m’ont aussi permis de gagner en crédibilité dans mon travail, via le renforcement de mes facultés de synthèse. L’application ViZiR constitue une base solide susceptible d’accueillir d’autres fonctionnalités dans les prochains mois. Le cœur de l’outil est à la fois robuste et modulaire, ce qui permettra à un futur repreneur de déployer l’application pour d’autres usages opérationnels, tout en garantissant une maintenance facilitée. Finalement, un des meilleurs indicateurs de la réussite de ce stage est le fait que les applications que j’ai développées sont désormais utilisées et valorisées. En effet, le spectre d’utilisation d’un outil comme ViZiR est assez large (nouveau nucléaire, ingénierie du parc en exploitation, etc.). Pour HPConnect, il serait tout à fait envisageable qu’EDF transpose la logique au projet EPR2, avec l’avantage non négligeable de disposer de toute la documentation et de la logique métier</p>
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+<div class="r-fit-text">
+<p>MERCI DE VOTRE ATTENTION !</p>
+</div>
+<hr class="special-blue">
+</section>
+<section id="annexe---r-packages" class="slide level2">
+<h2>Annexe - R packages</h2>
+<ul>
+<li><code>{dplyr}</code></li>
+<li><code>{janitor}</code> etc.</li>
+</ul>
+</section>
+<section id="annexe---code" class="slide level2 smaller">
+<h2>Annexe - Code</h2>
+<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="kw">def</span> initialize_states() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb1-2"><a href=""></a>    <span class="co">"""</span></span>
+<span id="cb1-3"><a href=""></a><span class="co">    Fonction initialisant tous les session_states par onglet</span></span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a><span class="co">    L'interactivité d'une application Streamlit est liée au fait que chaque </span></span>
+<span id="cb1-6"><a href=""></a><span class="co">    action utilisateur ré-éxécute entièrement le script de l'application.</span></span>
+<span id="cb1-7"><a href=""></a><span class="co">    Cependant, ce comportement n'est pas toujours souhaitable et peut </span></span>
+<span id="cb1-8"><a href=""></a><span class="co">    entraîner de nombreuses difficultés dans le développement.</span></span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="co">    =&gt; Pour pallier à ce problème,`st.session_state` permet de stocker et </span></span>
+<span id="cb1-11"><a href=""></a><span class="co">    partager des variables entre chaque ré-éxécution du script.</span></span>
+<span id="cb1-12"><a href=""></a></span>
+<span id="cb1-13"><a href=""></a><span class="co">    En pratique, cette fonction permet donc d'initialiser la configuration </span></span>
+<span id="cb1-14"><a href=""></a><span class="co">    de tous les input widgets.</span></span>
+<span id="cb1-15"><a href=""></a><span class="co">    """</span></span>
+<span id="cb1-16"><a href=""></a></span>
+<span id="cb1-17"><a href=""></a>    _states_sidebar_import()</span>
+<span id="cb1-18"><a href=""></a>    _states_conversion()</span>
+<span id="cb1-19"><a href=""></a>    _states_graph()</span>
+<span id="cb1-20"><a href=""></a>    _states_admin()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="présentation-du-groupe-fgp" class="slide level2 smaller">
+<h2>Présentation du groupe FGP</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/detu_services.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="assets/detu_services.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong><strong>FGP – Fonctionnement Général et Performance</strong></strong></p>
+</div>
+<div class="callout-content">
+<p>Assurer la cohérence d’ensemble de l’îlot conventionnel des tranches nucléaires pour un fonctionnement performant.</p>
+</div>
+</div>
+</div>
+<p><strong>Missions :</strong></p>
+<ul>
+<li>Optimisation des performances générales de la Salle des Machines,</li>
+<li>Etudes fonctionnelles transverses,</li>
+<li>Etudes de fonctionnement sur les grands transitoires.</li>
+</ul>
+<aside class="notes">
+<p>Au sein du CNEPE, j’ai travaillé dans le service Fonctionnement, et plus précisément dans le groupe Fonctionnement Général et Performance.</p>
+<hr>
+<p>Alors y’a plusieurs raisons qui expliquent cette part très elevé, mais une que j’ai choisi de mentionner c’est l’aspect d’approvisionnement électrique en continu que permet le nucléaire. Typiquement, à minuit vous pouvez produire la même quantité d’eléctricité qu’à midi.</p>
+<p>Par contre, essayer de faire la même chose avec des panneaux photovoltaiques, ça marche pas trop.</p>
+<p>Enuite, en deuxième position dans le mix avec à peu près 10%, vous avez l’hydroélectrique. Un des intérêts majeurs de ce type d’énergie c’est sa flexibilité : elle s’adapte très très bien aux variations de la demande quand il y a des pics de consommation.</p>
+<p>Autres gains : tout le process est documenté</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="quarto-auto-generated-content">
+<p><img src="assets/images/edf_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>EDF | DISC | CNEPE</p>
+</div>
+</div>
+</section></section>
+<section id="footnotes" class="footnotes footnotes-end-of-document smaller scrollable" role="doc-endnotes"><h2>Notes de bas de page</h2>
+
+<ol>
+<li id="fn1"><p><u>E</u>tablissement <u>P</u>ublic à <u>C</u>aractère <u>I</u>ndustriel ou <u>C</u>ommercial</p></li>
+<li id="fn2"><p>A partir de 2004</p></li>
+<li id="fn3"><p>Centre National d’Equipements de Production d’Eléctricité</p></li>
+<li id="fn4"><p><u>S</u>mall <u>M</u>odular <u>R</u>eactor</p></li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="internship_pres_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="internship_pres_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="internship_pres_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="internship_pres_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copié");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copié");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+    window.onload = () => {
+      lightboxQuarto.on('slide_before_load', (data) => {
+        const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+        const href = trigger.getAttribute('href');
+        if (href !== null) {
+          const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+          if (imgEl !== null) {
+            const srcAttr = imgEl.getAttribute("src");
+            if (srcAttr && srcAttr.startsWith("data:")) {
+              slideConfig.href = srcAttr;
+            }
+          }
+        } 
+      });
+
+      lightboxQuarto.on('slide_after_load', (data) => {
+        const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(slideNode);
+        }
+      });
+
+    };
+              </script>
+    
+
+</body></html>
