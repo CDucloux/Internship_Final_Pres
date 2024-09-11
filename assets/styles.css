@@ -64,7 +64,7 @@ div.caption-long {
 
 /* Crée un système de caption divider pour les figures multiples */
 div.caption-long-2 {
-    text-align: center;
+    text-align: left;
     margin-top: -2.5%;
     font-size: 0.8em;
 }
@@ -111,4 +111,8 @@ p.date {
 
 .no-color {
     color: black !important;
+}
+
+.fragment-center-item {
+    text-align: center;
 }

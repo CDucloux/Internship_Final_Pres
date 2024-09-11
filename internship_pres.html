@@ -390,22 +390,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="internship_pres_files/libs/core-js-2.5.3/shim.min.js"></script>
-
-  <script src="internship_pres_files/libs/react-18.2.0/react.min.js"></script>
-
-  <script src="internship_pres_files/libs/react-18.2.0/react-dom.min.js"></script>
-
-  <script src="internship_pres_files/libs/reactwidget-1.0.0/react-tools.js"></script>
-
-  <link href="internship_pres_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
-  <script src="internship_pres_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
-  <link href="internship_pres_files/libs/reactable-0.4.4/reactable.css" rel="stylesheet">
-
-  <script src="internship_pres_files/libs/reactable-binding-0.4.4/reactable.js"></script>
-
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -426,17 +410,81 @@
 
   <p class="date">13/09/2024</p>
 </section>
-<section id="table-des-matières" class="slide level2 smaller">
+<section id="table-des-matières" class="slide level2">
 <h2>Table des matières</h2>
 <p><br></p>
-<p><a href="/#introduction">1 | INTRODUCTION</a></p>
+<p><a href="/#introduction"><iconify-icon role="img" inline="" icon="mdi:table-of-contents" aria-label="Icon table-of-contents from mdi Iconify.design set." title="Icon table-of-contents from mdi Iconify.design set."></iconify-icon> INTRODUCTION</a></p>
 <ul>
-<li><a href="#/présentation-dedf" class="no-color">Présentation d’EDF</a></li>
-<li><a href="#/quelques-chiffres-clés-2023">Quelques chiffres clés (2023)</a></li>
-<li><a href="#/mix-électrique-dedf-en-france">Mix électrique d’EDF en France</a></li>
-<li><a href="#/parc-nucléaire-français">Parc nucléaire français</a></li>
-<li><a href="#/présentation-du-cnepe">Présentation du CNEPE</a></li>
+<li><a href="#/présentation-dedf">Présentation d’EDF <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/quelques-chiffres-clés-2023">Quelques chiffres clés (2023) <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/mix-électrique-dedf-en-france">Mix électrique d’EDF en France <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/parc-nucléaire-français">Parc nucléaire français <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/présentation-du-cnepe">Présentation du CNEPE <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
 </ul>
+<aside class="notes">
+<p>je vais commencer par introduire EDF et le CNEPE</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="table-des-matières-1" class="slide level2">
+<h2>Table des matières</h2>
+<p><br></p>
+<p><a href="#/missions"><iconify-icon role="img" inline="" icon="mdi:table-of-contents" aria-label="Icon table-of-contents from mdi Iconify.design set." title="Icon table-of-contents from mdi Iconify.design set."></iconify-icon> MISSIONS</a></p>
+<ul>
+<li><a href="#/architecture-ic">Architecture I&amp;C <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/etudes-de-perte-darmoires-hpc">Etudes de perte d’armoires (HPC) <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/hpconnect">HPConnect <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/exemple-de-fiche-de-sortie">Exemple de Fiche de sortie <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/gains-estimés-hpconnect">Gains estimés – HPConnect <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+</ul>
+<aside class="notes">
+<p>Ensuite je vais expliciter ce que j’ai fait dans le cadre de ma première et de ma deuxième mission,</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="table-des-matières-2" class="slide level2">
+<h2>Table des matières</h2>
+<p><br></p>
+<p><a href="#/missions-1"><iconify-icon role="img" inline="" icon="mdi:table-of-contents" aria-label="Icon table-of-contents from mdi Iconify.design set." title="Icon table-of-contents from mdi Iconify.design set."></iconify-icon> MISSIONS</a></p>
+<ul>
+<li><a href="#/simulateur-dune-tranche">Simulateur d’une tranche <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/exemple-de-données-de-simulation">Exemple de données de simulation <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/vizir">ViZiR <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li><a href="#/vizir-démonstration">ViZiR – Démonstration <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
+<li>blabla</li>
+</ul>
+<p><a href="#/conclusion"><iconify-icon role="img" inline="" icon="mdi:table-of-contents" aria-label="Icon table-of-contents from mdi Iconify.design set." title="Icon table-of-contents from mdi Iconify.design set."></iconify-icon> CONCLUSION</a></p>
+<aside class="notes">
+<p>Et puis enfin je concluerai.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 center">
@@ -482,12 +530,11 @@
 </figure>
 </div>
 <div class="caption">
-<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/edf-en-bref">https://www.edf.fr/groupe-edf/edf-en-bref <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/edf-en-bref">EDF en bref – EDF <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
 </div>
 <aside class="notes">
-<p>Quelques chiffres clés concernant le groupe.</p>
-<p>Générant un chiffre d’affaires de 140 milliards d’euros et avec un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c’est particulièrement vrai en France et en Europe.</p>
-<p>Petit apparté aussi sur les 467 Terrawatt heure de production mondiale</p>
+<p>Je vais continuer cette introduction assez générale en utilisant quelques chiffres clés concernant le groupe.</p>
+<p>Avec un chiffre d’affaires de 140 milliards d’euros et un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c’est particulièrement vrai en France et en Europe.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -534,12 +581,12 @@
 </div>
 </div>
 <div class="caption-long">
-<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat">https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat">Produire une énergie respectueuse du climat – EDF <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
 </div>
 <aside class="notes">
-<p>Sur ces 467 TerraWatts heure de production mondiale du groupe, les 3/4 à peu près sont produits en France.</p>
-<p>On voit surtout aussi dans le mix eléctrique français l’importance considérable de l’énergie d’origine nucléaire.</p>
-<p>Au delà de ça on voit en fait que notre mix électrique en France il est de facto presque entièrement décarbonné, de part le nucléaire et l’hydroélectrique.</p>
+<p>La production mondiale d’éléctricité du groupe, qui est un indicateur présent sur la slide précédente, c’est 467 TerraWatts heure en 2023, dont les 3/4 à peu près sont produits en France.</p>
+<p>Dans le mix eléctrique français on voit surtout l’importance considérable de l’énergie d’origine nucléaire.</p>
+<p>Au delà de ça on voit en fait que le mix électrique en France pour EDF il est de facto presque entièrement décarbonné, grâce au nucléaire et à l’hydroélectrique.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -576,7 +623,7 @@
 </div>
 </div>
 <div class="caption-long-2">
-<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres">https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+<p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/comprendre/production/nucleaire/nucleaire-en-chiffres">Le Nucléaire en chiffres – EDF <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
 </div>
 <div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
@@ -665,6 +712,19 @@
 <section id="missions" class="title-slide slide level1 center">
 <h1>2 | MISSIONS</h1>
 <p><em>Perte d’armoire de contrôle-commande</em></p>
+<aside class="notes">
+<p>On en arrive à mon premier sujet de stage : les pertes d’armoire de contrôle commande.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="architecture-ic" class="slide level2 smaller">
 <h2>Architecture I&amp;C</h2>
@@ -683,7 +743,7 @@
 <p><iconify-icon role="img" inline="" icon="fa6-solid:gears" aria-label="Icon gears from fa6-solid Iconify.design set." title="Icon gears from fa6-solid Iconify.design set."></iconify-icon> <strong>Niveau 0</strong> <span class="math inline">\(\rightarrow\)</span> Equipements</p>
 </div>
 <aside class="notes">
-<p>On en arrive à mon premier sujet de stage : les notes sur les pertes d’armoire de contrôle commande. Avant de parler de ça, je vais présenter ce qu’est le contrôle-commande.</p>
+<p>Avant de parler de ça, je vais présenter ce qu’est le contrôle-commande.</p>
 <p>Si on veut faire une analogie, c’est un peu le cerveau et le système nerveux d’une centrale.</p>
 <p><strong>Une centrale c’est très complexe</strong>, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l’ilôt nucléaire et conventionnel.</p>
 <p>Tous ces moyens de pilotage sont réunis dans ce qu’on appelle une architecture de contrôle-commande, que je présente ici de manière très très simplifiée.</p>
@@ -744,8 +804,8 @@
 <p>Néanmoins il y a plusieurs difficultés dans cette activité, que j’ai listées ici :</p>
 <ul>
 <li>Beaucoup de sources de données à croiser, dans des formats qui n’ont pas été pensées pour communiquer entre eux,</li>
-<li>Plus de 120 fiches en tout à fournir au client,</li>
-<li>Comme le croisement de données c’est une activité qui est pas très stimulante intellectuellement, il y a forcément des erreurs.</li>
+<li>Plus de 110 fiches en tout à fournir au client,</li>
+<li>Comme le croisement de données c’est une activité qui est pas très stimulante intellectuellement, il y a forcément des erreurs humaines.</li>
 </ul>
 <p>Pour toutes ces raisons, l’idée d’un de mes collègues a été d’automatiser la création des notes grâce à une application shiny qui créé en sortie des fiches au format <em>Word</em>.</p>
 <style type="text/css">
@@ -796,11 +856,11 @@
 </div>
 </div>
 <aside class="notes">
-<p>La version que j’ai développée d’HPConnect, va plus loin que la première parce qu’elle intègre notamment :</p>
+<p>La version que j’ai développée d’HPConnect, va beaucoup plus loin que celle initialement pensée parce qu’elle intègre notamment :</p>
 <ul>
-<li>Les impacts sureté quand on perd un actionneur ou un capteur,</li>
+<li>Les impacts liés à la sureté quand on perd un actionneur ou un capteur,</li>
 <li>Tout le formalisme de la fiche finale,</li>
-<li>Elle prémache grandement le travail des ingénieurs pour faire l’analyse fonctionnelle, c’est à dire la partie que l’application ne peut pas faire, mais là où ils ont une réelle plus value.</li>
+<li>Et elle prémache grandement le travail des ingénieurs pour faire l’analyse fonctionnelle, c’est à dire la partie que l’application ne peut pas faire, mais là où ils ont une réelle plus value.</li>
 </ul>
 <p>L’application est déployée sur une machine virtuelle, et donc n’importe qui chez EDF peut y accéder sans avoir à installer Rstudio et récupérer un fichier zip sorti d’un recoin sombre pour faire tourner l’appli, et l’interface ressemble à ça :</p>
 <p>L’onglet <strong>Table</strong> va permettre de sélectionner une armoire et une catégorie pour lister les pertes de cette catégorie dans le tableau noirci, en dessous.</p>
@@ -855,23 +915,23 @@
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="hisietsgwi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hisietsgwi table {
+<div id="oaszhcanrd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oaszhcanrd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hisietsgwi thead, #hisietsgwi tbody, #hisietsgwi tfoot, #hisietsgwi tr, #hisietsgwi td, #hisietsgwi th {
+#oaszhcanrd thead, #oaszhcanrd tbody, #oaszhcanrd tfoot, #oaszhcanrd tr, #oaszhcanrd td, #oaszhcanrd th {
   border-style: none;
 }
 
-#hisietsgwi p {
+#oaszhcanrd p {
   margin: 0;
   padding: 0;
 }
 
-#hisietsgwi .gt_table {
+#oaszhcanrd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -897,12 +957,12 @@
   border-left-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_caption {
+#oaszhcanrd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hisietsgwi .gt_title {
+#oaszhcanrd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -914,7 +974,7 @@
   border-bottom-width: 0;
 }
 
-#hisietsgwi .gt_subtitle {
+#oaszhcanrd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -926,7 +986,7 @@
   border-top-width: 0;
 }
 
-#hisietsgwi .gt_heading {
+#oaszhcanrd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -938,13 +998,13 @@
   border-right-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_bottom_border {
+#oaszhcanrd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_col_headings {
+#oaszhcanrd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -959,7 +1019,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_col_heading {
+#oaszhcanrd .gt_col_heading {
   color: #FFFFFF;
   background-color: #003871;
   font-size: 100%;
@@ -979,7 +1039,7 @@
   overflow-x: hidden;
 }
 
-#hisietsgwi .gt_column_spanner_outer {
+#oaszhcanrd .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #003871;
   font-size: 100%;
@@ -991,15 +1051,15 @@
   padding-right: 4px;
 }
 
-#hisietsgwi .gt_column_spanner_outer:first-child {
+#oaszhcanrd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hisietsgwi .gt_column_spanner_outer:last-child {
+#oaszhcanrd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hisietsgwi .gt_column_spanner {
+#oaszhcanrd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1011,11 +1071,11 @@
   width: 100%;
 }
 
-#hisietsgwi .gt_spanner_row {
+#oaszhcanrd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hisietsgwi .gt_group_heading {
+#oaszhcanrd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1041,7 +1101,7 @@
   text-align: left;
 }
 
-#hisietsgwi .gt_empty_group_heading {
+#oaszhcanrd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1056,15 +1116,15 @@
   vertical-align: middle;
 }
 
-#hisietsgwi .gt_from_md > :first-child {
+#oaszhcanrd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hisietsgwi .gt_from_md > :last-child {
+#oaszhcanrd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hisietsgwi .gt_row {
+#oaszhcanrd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1083,7 +1143,7 @@
   overflow-x: hidden;
 }
 
-#hisietsgwi .gt_stub {
+#oaszhcanrd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1096,7 +1156,7 @@
   padding-right: 5px;
 }
 
-#hisietsgwi .gt_stub_row_group {
+#oaszhcanrd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1110,15 +1170,15 @@
   vertical-align: top;
 }
 
-#hisietsgwi .gt_row_group_first td {
+#oaszhcanrd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hisietsgwi .gt_row_group_first th {
+#oaszhcanrd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hisietsgwi .gt_summary_row {
+#oaszhcanrd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1128,16 +1188,16 @@
   padding-right: 5px;
 }
 
-#hisietsgwi .gt_first_summary_row {
+#oaszhcanrd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_first_summary_row.thick {
+#oaszhcanrd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hisietsgwi .gt_last_summary_row {
+#oaszhcanrd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1147,7 +1207,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_grand_summary_row {
+#oaszhcanrd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1157,7 +1217,7 @@
   padding-right: 5px;
 }
 
-#hisietsgwi .gt_first_grand_summary_row {
+#oaszhcanrd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1167,7 +1227,7 @@
   border-top-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_last_grand_summary_row_top {
+#oaszhcanrd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1177,11 +1237,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_striped {
+#oaszhcanrd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hisietsgwi .gt_table_body {
+#oaszhcanrd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1190,7 +1250,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_footnotes {
+#oaszhcanrd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1204,7 +1264,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_footnote {
+#oaszhcanrd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1213,7 +1273,7 @@
   padding-right: 5px;
 }
 
-#hisietsgwi .gt_sourcenotes {
+#oaszhcanrd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1227,7 +1287,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hisietsgwi .gt_sourcenote {
+#oaszhcanrd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1235,63 +1295,63 @@
   padding-right: 5px;
 }
 
-#hisietsgwi .gt_left {
+#oaszhcanrd .gt_left {
   text-align: left;
 }
 
-#hisietsgwi .gt_center {
+#oaszhcanrd .gt_center {
   text-align: center;
 }
 
-#hisietsgwi .gt_right {
+#oaszhcanrd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hisietsgwi .gt_font_normal {
+#oaszhcanrd .gt_font_normal {
   font-weight: normal;
 }
 
-#hisietsgwi .gt_font_bold {
+#oaszhcanrd .gt_font_bold {
   font-weight: bold;
 }
 
-#hisietsgwi .gt_font_italic {
+#oaszhcanrd .gt_font_italic {
   font-style: italic;
 }
 
-#hisietsgwi .gt_super {
+#oaszhcanrd .gt_super {
   font-size: 65%;
 }
 
-#hisietsgwi .gt_footnote_marks {
+#oaszhcanrd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hisietsgwi .gt_asterisk {
+#oaszhcanrd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hisietsgwi .gt_indent_1 {
+#oaszhcanrd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hisietsgwi .gt_indent_2 {
+#oaszhcanrd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hisietsgwi .gt_indent_3 {
+#oaszhcanrd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hisietsgwi .gt_indent_4 {
+#oaszhcanrd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hisietsgwi .gt_indent_5 {
+#oaszhcanrd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1339,9 +1399,9 @@
 <li>Facilité de mise à jour de la donnée dans l’outil.</li>
 </ul>
 <aside class="notes">
-<p>Pour conclure sur ce premier sujet, parler des gains.</p>
-<p>Décomposition en 2 gains : un gain de temps qui se traduit en un gain financier et surtout aussi un gain de qualité pour le livrable final.</p>
-<p>Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu’on peut quantifier à 40 heures de travail économisé par fiche. L’estimation vaut ce qu’elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur importants.</p>
+<p>Pour conclure sur ce premier sujet, je trouve ça intéressant de mentionner les gains liés au développement de ce type de solutions.</p>
+<p>On peut les décomposer en 2 grandes typologies : les <strong>Gains de Temps</strong> qui se traduisent en gains financiers et surtout aussi les <strong>Gains de qualité</strong> pour le livrable final.</p>
+<p>Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu’on peut quantifier à 40 heures de travail économisé par fiche. L’estimation vaut ce qu’elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur de ce type.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1358,61 +1418,8 @@
 <section id="missions-1" class="title-slide slide level1 center">
 <h1>2 | MISSIONS</h1>
 <p><em>Post-traitement de résultats de simulation</em></p>
-</section>
-<section id="simulateur" class="slide level2">
-<h2>Simulateur</h2>
-<p>Le simulateur d’une tranche permet d’étudier le comportement dynamique théorique d’une unité de production.</p>
-<p>Pour que le modèle soit le plus réaliste possible, tous les systèmes de la tranche sont modélisés, la logique de contrôle-commande est répliquée et les modèles hydrauliques sont chargés.</p>
-<p>Le simulateur permet ainsi une représentation immédiate de l’installation et des phénomènes physiques</p>
-</section>
-<section id="vizir" class="slide level2">
-<h2>ViZiR</h2>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Ceci est important</strong></p>
-</div>
-<div class="callout-content">
-<p>Dnas le cadre de vizir</p>
-<p>Plusieurs entités ont manifesté leur désir d’utiliser ViZir.</p>
-</div>
-</div>
-</div>
-<p>Parler des fonctionnalités principales, de la reproductibilité de l’étude grâce au fichier de paramètres json qu’on recharge</p>
-</section>
-<section id="migration-vers-python" class="slide level2">
-<h2>Migration vers python</h2>
-<p>Stack technique</p>
-<ul>
-<li><code>plotly</code></li>
-<li><code>polars</code></li>
-<li><code>streamlit</code></li>
-</ul>
-<p>Utilisation avancée : <code>session_state</code> de streamlit</p>
-<p>parler des tests unitaires.</p>
-</section>
-<section id="vizir-data-exemple-csv" class="slide level2 smaller">
-<h2>Vizir data exemple csv</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-73b329b2df6532455c1a" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-73b329b2df6532455c1a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"TpsSimu":[100,300,500,700],"3XQE2244.aValeur":[81.125,80.129,80.128,80.124],"3AGP7167.bValeur":[81.125,80.129,80.128,80.124],"3PIJ1942.cValeur":[81.125,80.129,80.128,80.124]},"columns":[{"id":"TpsSimu","name":"TpsSimu","type":"numeric"},{"id":"3XQE2244.aValeur","name":"3XQE2244.aValeur","type":"numeric"},{"id":"3AGP7167.bValeur","name":"3AGP7167.bValeur","type":"numeric"},{"id":"3PIJ1942.cValeur","name":"3PIJ1942.cValeur","type":"numeric"}],"rowStyle":[{"border-top":"thin solid gray"},{"border-top":"thin solid gray"},{"border-top":"thin solid gray"},{"border-top":"thin solid gray"}],"dataKey":"815b6c7a8f40c6fe27338052f08129bc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-<p><iconify-icon role="img" inline="" icon="fa6-solid:file-csv" aria-label="Icon file-csv from fa6-solid Iconify.design set." title="Icon file-csv from fa6-solid Iconify.design set."></iconify-icon></p>
-</section>
-<section id="grapheur-vizir" class="slide level2">
-<h2>Grapheur vizir</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="assets/vizir_graphing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="assets/vizir_graphing.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
-</figure>
-</div>
 <aside class="notes">
-<p>Aspect de customisation avancé : titre, couleur, taille du titre, min/max, le type de tracé.</p>
+<p>Maintenant je vais aborder mon deuxième sujet : le post-traitement de résultats de simulation.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1425,22 +1432,771 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="rechargement-dune-étude" class="slide level2">
-<h2>Rechargement d’une étude</h2>
+<section id="simulateur-dune-tranche" class="slide level2 smaller">
+<h2>Simulateur d’une tranche</h2>
+<p><br></p>
+<blockquote>
+<p>Le simulateur d’une tranche permet d’étudier le <strong>comportement dynamique théorique</strong> d’une unité de production.</p>
+</blockquote>
+<p><strong>Intérêt des simulateurs :</strong></p>
+<ul>
+<li>Formation des équipes de conduite,</li>
+<li>Vérification de modifications sur l’installation,</li>
+<li>Vérification du bon déroulement des procédures d’essai.</li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> Une fois la session sur simulateur terminée, possibilité d’exporter les résultats de simulation sous forme de fichier <iconify-icon role="img" inline="" icon="fa6-solid:file-csv" aria-label="Icon file-csv from fa6-solid Iconify.design set." title="Icon file-csv from fa6-solid Iconify.design set."></iconify-icon>.</p>
+<aside class="notes">
+<p>Pour introduire cette partie, je vais d’abord parler de simulateurs.</p>
+<p>De manière analogue à ce qu’on peut trouver dans l’aviation avec les simulateurs de vol, dans le nucléaire vous avez aussi des simulateurs dont le but va être de reproduire au mieux la tranche et les phénomènes physiques, en modélisant tous les sytèmes et la logique de contrôle commande.</p>
+<p>Le but d’un simulateur à première vue, c’est faire de la formation et c’est vrai, mais pas que, ça peut aussi être utilisé dans le cadre de vérification de modifications sur l’installation et de rédaction de notes techniques - plus dans le cadre du groupe, etc etc.</p>
+<p>Une fois qu’on a terminé une session sur simulateur, on peut exporter les résultats de simulation sous forme de fichier csv.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exemple-de-données-de-simulation" class="slide level2 smaller">
+<h2>Exemple de données de simulation</h2>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="eagoivmleg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eagoivmleg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eagoivmleg thead, #eagoivmleg tbody, #eagoivmleg tfoot, #eagoivmleg tr, #eagoivmleg td, #eagoivmleg th {
+  border-style: none;
+}
+
+#eagoivmleg p {
+  margin: 0;
+  padding: 0;
+}
+
+#eagoivmleg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eagoivmleg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eagoivmleg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eagoivmleg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eagoivmleg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eagoivmleg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eagoivmleg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eagoivmleg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eagoivmleg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eagoivmleg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eagoivmleg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eagoivmleg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eagoivmleg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eagoivmleg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eagoivmleg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eagoivmleg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eagoivmleg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eagoivmleg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eagoivmleg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eagoivmleg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eagoivmleg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eagoivmleg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eagoivmleg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eagoivmleg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eagoivmleg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eagoivmleg .gt_left {
+  text-align: left;
+}
+
+#eagoivmleg .gt_center {
+  text-align: center;
+}
+
+#eagoivmleg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eagoivmleg .gt_font_normal {
+  font-weight: normal;
+}
+
+#eagoivmleg .gt_font_bold {
+  font-weight: bold;
+}
+
+#eagoivmleg .gt_font_italic {
+  font-style: italic;
+}
+
+#eagoivmleg .gt_super {
+  font-size: 65%;
+}
+
+#eagoivmleg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eagoivmleg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eagoivmleg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eagoivmleg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eagoivmleg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eagoivmleg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eagoivmleg .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header gt_heading">
+<th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Fichier
+<svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:green;overflow:visible;position:relative;">
+<path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM200 352h16c22.1 0 40 17.9 40 40v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-4.4-3.6-8-8-8H200c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-8c0-8.8 7.2-16 16-16s16 7.2 16 16v8c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40zm133.1 0H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H333.1c-7.2 0-13.1 5.9-13.1 13.1c0 5.2 3 9.9 7.8 12l37.4 16.6c16.3 7.2 26.8 23.4 26.8 41.2c0 24.9-20.2 45.1-45.1 45.1H304c-8.8 0-16-7.2-16-16s7.2-16 16-16h42.9c7.2 0 13.1-5.9 13.1-13.1c0-5.2-3-9.9-7.8-12l-37.4-16.6c-16.3-7.2-26.8-23.4-26.8-41.2c0-24.9 20.2-45.1 45.1-45.1zm98.9 0c8.8 0 16 7.2 16 16v31.6c0 23 5.5 45.6 16 66c10.5-20.3 16-42.9 16-66V368c0-8.8 7.2-16 16-16s16 7.2 16 16v31.6c0 34.7-10.3 68.7-29.6 97.6l-5.1 7.7c-3 4.5-8 7.1-13.3 7.1s-10.3-2.7-13.3-7.1l-5.1-7.7c-19.3-28.9-29.6-62.9-29.6-97.6V368c0-8.8 7.2-16 16-16z"></path>
+</svg>
+de simulation standard</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="<strong>TpsSimu</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>TpsSimu</strong></th>
+<th id="<strong>3BEE8686.aValeur</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>3BEE8686.aValeur</strong></th>
+<th id="<strong>3AGP7167.bValeur</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>3AGP7167.bValeur</strong></th>
+<th id="<strong>3PIJ1942.cValeur</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>3PIJ1942.cValeur</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="TpsSimu">100</td>
+<td class="gt_row gt_center" headers="a">81.125</td>
+<td class="gt_row gt_center" headers="b">81.125</td>
+<td class="gt_row gt_center" headers="c">81.125</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="TpsSimu">300</td>
+<td class="gt_row gt_center" headers="a">80.129</td>
+<td class="gt_row gt_center" headers="b">80.129</td>
+<td class="gt_row gt_center" headers="c">80.129</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="TpsSimu">500</td>
+<td class="gt_row gt_center" headers="a">80.128</td>
+<td class="gt_row gt_center" headers="b">80.128</td>
+<td class="gt_row gt_center" headers="c">80.128</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="TpsSimu">700</td>
+<td class="gt_row gt_center" headers="a">80.124</td>
+<td class="gt_row gt_center" headers="b">80.124</td>
+<td class="gt_row gt_center" headers="c">80.124</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="TpsSimu">900</td>
+<td class="gt_row gt_center" headers="a">80.111</td>
+<td class="gt_row gt_center" headers="b">79.860</td>
+<td class="gt_row gt_center" headers="c">54.320</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><em>Note : Données totalement fictives.</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Ce fichier est standardisé :</p>
+<ul>
+<li>Une colonne de pas de temps,</li>
+<li>Une colonne pour chaque capteur étudié.</li>
+</ul>
+<p>Mais ensuite pour exploiter ces fichiers csv bruts, il faut quelque chose de plus puissant qu’Excel.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="vizir" class="slide level2">
+<h2>ViZiR</h2>
+<div class="fragment strike">
+<p><span class="fragment-center-item"><em>“Visualisation in <iconify-icon role="img" inline="" icon="fa6-brands:r-project" aria-label="Icon r-project from fa6-brands Iconify.design set." title="Icon r-project from fa6-brands Iconify.design set."></iconify-icon>”</em></span></p>
+</div>
+<div class="fragment fade-down">
+<p><iconify-icon role="img" inline="" icon="emojione-v1:down-arrow" aria-label="Icon down-arrow from emojione-v1 Iconify.design set." title="Icon down-arrow from emojione-v1 Iconify.design set."></iconify-icon></p>
+</div>
+<div class="fragment fade-down">
+<p><em>“Visualisation in <iconify-icon role="img" inline="" icon="fa6-brands:python" aria-label="Icon python from fa6-brands Iconify.design set." title="Icon python from fa6-brands Iconify.design set."></iconify-icon> Python”</em></p>
+</div>
+<div class="fragment fade-down">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ce qu’apporte ViZiR</strong></p>
+</div>
+<div class="callout-content">
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">Temps de paramétrage réduit</label></li>
+<li><label><input type="checkbox" checked="">Intégration des bases de données de simulateurs</label></li>
+<li><label><input type="checkbox" checked="">Graphique dynamique, avec possibilité de zoomer</label></li>
+<li><label><input type="checkbox" checked="">Axe <span class="math inline">\(Y\)</span> secondaire</label></li>
+<li><label><input type="checkbox" checked="">Groupement d’axes</label></li>
+<li><label><input type="checkbox" checked="">Rechargement d’une étude</label></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>C’est pour ça que ViZiR a été crée.</p>
+<p>Pour la petite histoire ça s’appelle ViZiR parce que c’était un acronyme de Visualisation sur R, mais voilà, les applis sur R shiny comme celle que j’ai pu vous présenter dans la partie précédente c’est bien MAIS ça gère très mal un grand nombre d’utilisateurs en simultanné (or y’a plusieurs entités d’EDF qui manifestent leur désir d’utiliser ViZiR donc plusieurs utilisateurs en simultanné c’est clairement possible).</p>
+<p>Aussi, si jamais y’a pas de gestion d’erreur appropriée, ça déconnecte automatiquement les utilisateurs du serveur. Niveau stabilité on a vu mieux.</p>
+<p>Et surtout, R c’est pas un langage qui a le vent en poupe chez EDF donc y’a pas forcément d’infrastructure adaptée où on peut déployer facilement des applis shiny, et ça ça compte.</p>
+<hr>
+<p>Maintenant la question après cet aparté c’est qu’est ce que permet ViZiR :</p>
+<ul>
+<li>Un temps de paramétrage qui par rapport à Excel, est divisé par 10</li>
+<li>Ensuite, grâce aux bases de données de simulateur, on peut récupérer les libellés associés aux capteurs, les unités, etc.</li>
+<li>Surtout on a un graphique qui est dynamique, on peut facilement zoomer, regarder les valeurs des capteurs à un instant t, etc.</li>
+<li>On a aussi des fonctionnalités comme les Axe Y secondaires et le groupement d’axes</li>
+<li>Et enfin la fonctionnalité vraiment intéressante, c’est le rechargement d’une étude</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="vizir-démonstration" class="slide level2 smaller">
+<h2>ViZiR – Démonstration</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1"><iconify-icon role="img" inline="" icon="fa6-solid:chart-line" aria-label="Icon chart-line from fa6-solid Iconify.design set." title="Icon chart-line from fa6-solid Iconify.design set."></iconify-icon> Grapheur</a></li><li><a href="#tabset-2-2"><iconify-icon role="img" inline="" icon="gravity-ui:chart-line" aria-label="Icon chart-line from gravity-ui Iconify.design set." title="Icon chart-line from gravity-ui Iconify.design set."></iconify-icon> Sous-graphique</a></li><li><a href="#tabset-2-3"><iconify-icon role="img" inline="" icon="tabler:dots" aria-label="Icon dots from tabler Iconify.design set." title="Icon dots from tabler Iconify.design set."></iconify-icon> Graphique à points</a></li><li><a href="#tabset-2-4"><iconify-icon role="img" inline="" icon="mdi:graph-box-plus-outline" aria-label="Icon graph-box-plus-outline from mdi Iconify.design set." title="Icon graph-box-plus-outline from mdi Iconify.design set."></iconify-icon> Multi-grapheur</a></li><li><a href="#tabset-2-5"><iconify-icon role="img" inline="" icon="mdi:paint-outline" aria-label="Icon paint-outline from mdi Iconify.design set." title="Icon paint-outline from mdi Iconify.design set."></iconify-icon> Personnalisation</a></li><li><a href="#tabset-2-6"><iconify-icon role="img" inline="" icon="ant-design:reload-time-outline" aria-label="Icon reload-time-outline from ant-design Iconify.design set." title="Icon reload-time-outline from ant-design Iconify.design set."></iconify-icon> Rechargement d’une étude</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/vizir_graphing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="assets/images/vizir_graphing.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/subgraph_vizir.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="assets/images/subgraph_vizir.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3">
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/vizir_points.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img data-src="assets/images/vizir_points.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/vizir_multigraph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img data-src="assets/images/vizir_multigraph.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/settable_params_vizir_slides.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img data-src="assets/images/settable_params_vizir_slides.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-6">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/vizir_graph_params.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img data-src="assets/images/vizir_graph_params.PNG" class="quarto-figure quarto-figure-center" style="width:90.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Maintenant, voilà ce que ça donne :</p>
+<p>Une fois le fichier csv importé on peut sélectionner des capteurs pour les afficher dans la fenêtre graphique. Il y a deux types de capteurs qui ont leur propre fenetre graphique : les capteurs analogiques, et les capteurs TOR (Tout Ou Rien) qui sont simplement 0 ou 1.</p>
+<p>Initialement, chaque capteur a son propre axe des ordonnées dédié, mais on peut facilement faire des combinaisons d’axes, et c’est particulièrement intéressant quand on regarde la même unité.</p>
+<ul>
+<li><p>Ensuite on peut subdiviser la fenêtre graphique,</p></li>
+<li><p>Changer le type de tracé, là au lieu de lignes on a seulement les points, ça peut être utile pour identifier les périodes d’acquisition des capteurs.</p></li>
+<li><p>Le multigraph permet de comparer plusieurs graphiques cote à cote.</p></li>
+<li><p>Aspect de personnalisation assez avancé : on peut changer le titre, la taille du titre, la couleur des axes, les minimum et maximum, ajouter des annotations…</p></li>
+<li><p>Et surtout une fois qu’on a fait toutes ces personnalisations, on peut les sauvegarder dans un fichier json, et recharger la config de paramètres ensuite. Grâce à ça on s’assure qu’il y a une bonne reproductibilité des études.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="partie-technique" class="slide level2 smaller">
+<h2>Partie Technique</h2>
+<p><br></p>
+<p><strong>🛠 Stack technique utilisée :</strong></p>
+<ul>
+<li><code>plotly</code></li>
+<li><code>polars</code></li>
+<li><code>streamlit</code></li>
+</ul>
+<p>Utilisation avancée : <code>session_state</code> de streamlit</p>
+<p>Intégration dans un environnement de test : Datatools (Kubernetes / conteneurs)</p>
+<p>Présence de tests unitaires,</p>
+<p>bonnes pratiques de code, documentation intégrée</p>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>3 | CONCLUSION</h1>
 
 </section>
-<section id="une-slide-pour-conclure" class="slide level2 smaller">
-<h2>Une slide pour conclure</h2>
-<p>expérience professionnelle très enrichissante à plusieurs égards.</p>
-<p>J’ai eu l’opportunité de travailler sur deux sujets différents mêlant des compétences techniques variées, notamment en python, R, Git, et bien d’autres outils, tout en m’imposant un cadre rigoureux en matière d’ingénierie logicielle.</p>
-<p>Ces six mois m’ont permis non seulement de monter en compétence dans le domaine de la Data,</p>
-<p><span class="math inline">\(\rightarrow\)</span> Le Nucléaire : un domaine complexe et incroyablement intéressant, en plein essor</p>
-<p>Au-delà des compétences purement techniques, j’ai amélioré mes compétences personnelles telles que la gestion et l’organisation de mon temps de travail, ce qui m’a été indispensable pour mener à bien mes deux projets tout en respectant les délais.</p>
-<p>En échangeant régulièrement avec des collègues d’autres unités dans le cadre de ces missions, j’ai également renforcé mes capacités de communication. Les présentations lors d’ateliers dédiés à la Direction Technique ainsi qu’au « Club Simu » (une communauté d’ingénieurs utilisant les simulateurs) m’ont aussi permis de gagner en crédibilité dans mon travail, via le renforcement de mes facultés de synthèse. L’application ViZiR constitue une base solide susceptible d’accueillir d’autres fonctionnalités dans les prochains mois. Le cœur de l’outil est à la fois robuste et modulaire, ce qui permettra à un futur repreneur de déployer l’application pour d’autres usages opérationnels, tout en garantissant une maintenance facilitée. Finalement, un des meilleurs indicateurs de la réussite de ce stage est le fait que les applications que j’ai développées sont désormais utilisées et valorisées. En effet, le spectre d’utilisation d’un outil comme ViZiR est assez large (nouveau nucléaire, ingénierie du parc en exploitation, etc.). Pour HPConnect, il serait tout à fait envisageable qu’EDF transpose la logique au projet EPR2, avec l’avantage non négligeable de disposer de toute la documentation et de la logique métier</p>
+<section id="quelques-remarques-pour-conclure" class="slide level2 smaller">
+<h2>Quelques remarques pour conclure</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/aero_1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img data-src="assets/images/aero_1.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p>Travail sur <strong>deux sujets différents</strong> :</p>
+<ul>
+<li><em>HPConnect</em> <span class="math inline">\(\Rightarrow\)</span> Pertes d’armoire de controle commande</li>
+<li><em>ViZiR</em> <span class="math inline">\(\Rightarrow\)</span> Post-traitement de résultats de simulation</li>
+</ul></li>
+<li><p>Mobilisation de compétences techniques variées (<iconify-icon role="img" inline="" icon="fa6-brands:python" aria-label="Icon python from fa6-brands Iconify.design set." title="Icon python from fa6-brands Iconify.design set."></iconify-icon>, <iconify-icon role="img" inline="" icon="fa6-brands:r-project" aria-label="Icon r-project from fa6-brands Iconify.design set." title="Icon r-project from fa6-brands Iconify.design set."></iconify-icon>, <iconify-icon role="img" inline="" icon="fa6-brands:git" aria-label="Icon git from fa6-brands Iconify.design set." title="Icon git from fa6-brands Iconify.design set."></iconify-icon>, SQL)</p></li>
+<li><p><iconify-icon role="img" inline="" icon="ph:nuclear-plant-fill" aria-label="Icon nuclear-plant-fill from ph Iconify.design set." title="Icon nuclear-plant-fill from ph Iconify.design set."></iconify-icon> <strong>Le Nucléaire</strong> : un domaine complexe et intéressant, en pleine relance.</p></li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>Travailler chez EDF ça a été une expérience professionnelle très agréable et enrichissante, j’ai eu l’avantage de travailler sur 2 sujets différents :</p>
+<ul>
+<li>Les pertes d’armoire de controle commande, avec l’application HPConnect,</li>
+<li>Et le post traitement de résultats de simulation avec ViZiR</li>
+</ul>
+<p>Ca m’a permis de mobiliser beaucoup de compétences techniques qui sont enseignées au Mécen, mais surtout aussi d’apprendre, et je le dis avec humilité, beaucoup de choses spécifiques au domaine du nucléaire puisque j’étais en contact direct avec des ingénieurs du CNEPE, et j’ai aussi eu l’occasion d’aller sur le site de production de Dampierre, on voit d’ailleurs à gauche l’aéroréfrigérant de la tranche à l’arrêt, qu’on a pu visiter.</p>
+<p>Une des choses que j’ai apprécié c’est le fait que maintenant ce que j’ai développé c’est utilisé et valorisé. C’est pas quelque chose d’expérimental qui reste dans son coin, y’a un véritable impact. Pour garantir le mantien de la solution dans le futur je me suis aussi beaucoup appuyé sur le groupe SID, que Guillaume vous présentera par la suite et je me suis aussi mis en contact avec l’équipe Data Science coté Edvance (une filiale d’EDF), qui lance beaucoup de choses sur ces sujets.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="section" class="slide level2 center">
 <h2></h2>
@@ -1448,16 +2204,35 @@
 <p>MERCI DE VOTRE ATTENTION !</p>
 </div>
 <hr class="special-blue">
+<aside class="notes">
+<p>Je vous remercie de votre attention, et si vous avez des questions n’hésitez pas, je serai ravi d’y répondre.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="annexes" class="title-slide slide level1 center">
+<h1>4 | ANNEXES</h1>
+
 </section>
-<section id="annexe---r-packages" class="slide level2">
-<h2>Annexe - R packages</h2>
-<ul>
-<li><code>{dplyr}</code></li>
-<li><code>{janitor}</code> etc.</li>
-</ul>
+<section id="package-r-cabinetloader" class="slide level2">
+<h2>Package R <code>{cabinetloader}</code></h2>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="assets/images/cabinetloader_function_reference.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="assets/images/cabinetloader_function_reference.PNG" class="quarto-figure quarto-figure-left" style="width:70.0%"></a></p>
+</figure>
+</div>
 </section>
-<section id="annexe---code" class="slide level2 smaller">
-<h2>Annexe - Code</h2>
+<section id="annexe---session-state" class="slide level2 smaller">
+<h2>Annexe - session state</h2>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="kw">def</span> initialize_states() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
 <span id="cb1-2"><a href=""></a>    <span class="co">"""</span></span>
@@ -1479,30 +2254,6 @@
 <span id="cb1-18"><a href=""></a>    _states_conversion()</span>
 <span id="cb1-19"><a href=""></a>    _states_graph()</span>
 <span id="cb1-20"><a href=""></a>    _states_admin()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="présentation-du-groupe-fgp" class="slide level2 smaller">
-<h2>Présentation du groupe FGP</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="assets/detu_services.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="assets/detu_services.PNG" class="quarto-figure quarto-figure-center" style="width:100.0%"></a></p>
-</figure>
-</div>
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong><strong>FGP – Fonctionnement Général et Performance</strong></strong></p>
-</div>
-<div class="callout-content">
-<p>Assurer la cohérence d’ensemble de l’îlot conventionnel des tranches nucléaires pour un fonctionnement performant.</p>
-</div>
-</div>
-</div>
-<p><strong>Missions :</strong></p>
-<ul>
-<li>Optimisation des performances générales de la Salle des Machines,</li>
-<li>Etudes fonctionnelles transverses,</li>
-<li>Etudes de fonctionnement sur les grands transitoires.</li>
-</ul>
 <aside class="notes">
 <p>Au sein du CNEPE, j’ai travaillé dans le service Fonctionnement, et plus précisément dans le groupe Fonctionnement Général et Performance.</p>
 <hr>
@@ -1524,7 +2275,7 @@
 <div class="quarto-auto-generated-content">
 <p><img src="assets/images/edf_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>EDF | DISC | CNEPE</p>
+<p><code>EDF</code> | <code>DISC</code> | <code>CNEPE</code></p>
 </div>
 </div>
 </section></section>
@@ -1533,7 +2284,7 @@
 <ol>
 <li id="fn1"><p><u>E</u>tablissement <u>P</u>ublic à <u>C</u>aractère <u>I</u>ndustriel ou <u>C</u>ommercial</p></li>
 <li id="fn2"><p>A partir de 2004</p></li>
-<li id="fn3"><p>Centre National d’Equipements de Production d’Eléctricité</p></li>
+<li id="fn3"><p><u>C</u>entre <u>N</u>ational d’<u>E</u>quipements de <u>P</u>roduction d’<u>E</u>léctricité</p></li>
 <li id="fn4"><p><u>S</u>mall <u>M</u>odular <u>R</u>eactor</p></li>
 </ol>
 </section>
@@ -1999,7 +2750,7 @@
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;
