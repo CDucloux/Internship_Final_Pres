@@ -395,7 +395,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-notes="Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d’études. Pendant ce stage j’ai eu deux sujets principaux à aborder : un qui traite de problématiques I&amp;C et l’autre qui est plus axé simulateur. Si ces termes ne vous parlent pas pour l’instant, il seront explicités par la suite. Je remercie évidemment mes deux tuteurs, Alexandre Padet et Grégoire Bouvet pour leur accompagnement." class="quarto-title-block center">
+<section id="title-slide" data-notes="Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d’études. Pendant ce stage j’ai eu deux sujets principaux à aborder : un qui traite de problématiques de <strong>controle-commande</strong> et l’autre qui est plus axé <strong>simulateur</strong>. Si ces termes vous font un petit peu peur pour l’instant, il seront explicités par la suite. Je tiens à remercier mes deux tuteurs chez EDF, Alexandre Padet et Grégoire Bouvet pour leur accompagnement et M. Perrollaz, mon tuteur universitaire, pour nos échanges." class="quarto-title-block center">
   <h1 class="title"><strong>Pertes d’armoire de contrôle-commande et post-traitement de résultats de simulation</strong></h1>
   <p class="subtitle"><img data-src="assets/images/UT_logo.jpg" style="width:45.0%"> <img data-src="assets/images/MECEN_logo.png" style="width:23.0%"><br>
 </p><hr class="divider"><p></p>
@@ -422,7 +422,7 @@
 <li><a href="#/présentation-du-cnepe">Présentation du CNEPE <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
 </ul>
 <aside class="notes">
-<p>je vais commencer par introduire EDF et le CNEPE</p>
+<p>Tout d’abord, je vais commencer par introduire EDF et le CNEPE</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -447,7 +447,7 @@
 <li><a href="#/gains-estimés-hpconnect">Gains estimés – HPConnect <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
 </ul>
 <aside class="notes">
-<p>Ensuite je vais expliciter ce que j’ai fait dans le cadre de ma première et de ma deuxième mission,</p>
+<p>Ensuite je vais expliciter ce que j’ai fait dans le cadre de ma première et de ma seconde mission,</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -469,11 +469,10 @@
 <li><a href="#/exemple-de-données-de-simulation">Exemple de données de simulation <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
 <li><a href="#/vizir">ViZiR <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
 <li><a href="#/vizir-démonstration">ViZiR – Démonstration <iconify-icon role="img" inline="" icon="iconoir:page-right" aria-label="Icon page-right from iconoir Iconify.design set." title="Icon page-right from iconoir Iconify.design set."></iconify-icon></a></li>
-<li>blabla</li>
 </ul>
 <p><a href="#/conclusion"><iconify-icon role="img" inline="" icon="mdi:table-of-contents" aria-label="Icon table-of-contents from mdi Iconify.design set." title="Icon table-of-contents from mdi Iconify.design set."></iconify-icon> CONCLUSION</a></p>
 <aside class="notes">
-<p>Et puis enfin je concluerai.</p>
+<p>Et puis enfin je concluerai en partageant mon retour d’expérience sur le stage.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -508,8 +507,8 @@
 <aside class="notes">
 <p>Je pense ne pas me tromper en affirmant que la majorité d’entre vous connait déjà EDF, puisqu’on est tous amené à un moment ou à un autre à payer des factures d’électricité dans notre vie. Mais pour ceux qui s’éclairent encore à la bougie,</p>
 <p>EDF c’est une société française de production d’electricité, et c’est aussi un fournisseur, que ce soit pour les particuliers ou les entreprises.</p>
-<p>Pour un peu d’histoire, EDF a été crée en 1946 en tant que Monopole d’Etat, et c’est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen que c’est devenu une société anonyme, qui n’est plus en situation de monopole au niveau de la fourniture d’électricité, c’est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.</p>
-<p>Alors c’est une Société Anonyme mais, quand même, aujourd’hui, 100% du capital est détenu par l’Etat Français, donc il y a une forte mission de service public derrière.</p>
+<p>Pour un peu d’histoire, EDF a été crée en 1946 en tant que Monopole d’Etat (plus précisement un EPIC), et c’est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen (en 2004) que c’est devenu une société anonyme, qui n’est plus en situation de monopole au niveau de la fourniture d’électricité, c’est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.</p>
+<p>Alors c’est une Société Anonyme mais, aujourd’hui, 100% du capital est détenu par l’Etat Français, donc il y a une forte mission de service public derrière.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -533,8 +532,8 @@
 <p><strong>Source :</strong> <a href="https://www.edf.fr/groupe-edf/edf-en-bref">EDF en bref – EDF <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
 </div>
 <aside class="notes">
-<p>Je vais continuer cette introduction assez générale en utilisant quelques chiffres clés concernant le groupe.</p>
-<p>Avec un chiffre d’affaires de 140 milliards d’euros et un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c’est particulièrement vrai en France et en Europe.</p>
+<p>Je vais continuer cette introduction en utilisant quelques chiffres clés concernant le groupe.</p>
+<p>Que ce soit le Chiffre d’affaires : 140 milliards, ou l’effectif : 180000 personnes, le budget de R&amp;D, en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c’est particulièrement vrai en France comme en Europe.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -585,8 +584,7 @@
 </div>
 <aside class="notes">
 <p>La production mondiale d’éléctricité du groupe, qui est un indicateur présent sur la slide précédente, c’est 467 TerraWatts heure en 2023, dont les 3/4 à peu près sont produits en France.</p>
-<p>Dans le mix eléctrique français on voit surtout l’importance considérable de l’énergie d’origine nucléaire.</p>
-<p>Au delà de ça on voit en fait que le mix électrique en France pour EDF il est de facto presque entièrement décarbonné, grâce au nucléaire et à l’hydroélectrique.</p>
+<p>Dans le mix eléctrique français on voit surtout l’importance considérable de l’énergie d’origine nucléaire, suivi ensuite de l’hydroélectrique. En fait on voit que le mix électrique en France pour EDF il est de facto presque entièrement décarbonné, grâce à la part importante d’hydroélectrique et surtout grâce au nucléaire.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -631,13 +629,14 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Une tranche de 900 MW produit en moyenne chaque mois <strong>500 000 MWh</strong>, ce qui correspond à la consommation de <strong>400 000 foyers</strong> environ.</p>
+<p>Un réacteur de 900 MW produit en moyenne chaque mois <strong>500 000 MWh</strong>, ce qui correspond à la consommation de <strong>400 000 foyers</strong> environ.</p>
 </div>
 </div>
 </div>
 <aside class="notes">
-<p>Pour repasser sur le sujet du nucléaire, on a en France un parc important, avec 57 réacteurs, qu’on appelle aussi tranches, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts. Et on a, à gauche, la carte de l’implantation des tranches sur le territoire, à noter qu’il manque Flamanville 3 par contre, mais elle est bien démarrée.</p>
-<p>Pour avoir des ordres de grandeur, une tranche de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près</p>
+<p>Parce qu’en effet concernant le nucléaire, on a en France un parc important, avec 57 réacteurs, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts.</p>
+<p>Tous ces réacteurs appartiennent à la filière du REP : le Réacteur à Eau Préssurisée. Petit apparté : on a pas de RBMK comme a Tchernobyl ni de Réacteur à eau Bouillante comme celui de Fukushima.</p>
+<p>Pour avoir des ordres de grandeur, un réacteur de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -684,17 +683,20 @@
 </div>
 </div>
 </div>
+<div class="caption-long-2">
+<p><strong>Source :</strong> <a href="https://www.irsn.fr/savoir-comprendre/surete/presentation-generale-dun-reacteur-nucleaire">Ilot nucléaire et Ilot conventionnel – IRSN <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
+</div>
 <aside class="notes">
-<p>Je vous présente le CNEPE parce que c’est le centre d’ingénierie ou j’ai effectué mon stage et dont la majeure partie du travail se concentre sur l’ilot conventionnel d’une installation nucléaire.</p>
-<p>L’ilot conventionnel, qu’on peut visualiser à droite de cette image, regroupe : La source froide, les aéroréfrigérants (les grandes tours caractéristiques du nucléaire), et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.</p>
+<p>EDF est découpée en centres d’ingénierie qui s’occupe d’activités distinctes.</p>
+<p>Le CNEPE, ou j’ai effectué mon stage, s’occupe de l’ilot conventionnel d’une installation nucléaire.</p>
+<p>L’ilot conventionnel, qu’on peut visualiser à droite de cette image, regroupe : La source froide (un fleuve ou la mer), éventuellement des aéroréfrigérants, et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.</p>
 <p>Plus précisément, les activités du CNEPE se composent de deux grands axes :</p>
 <ul>
-<li><p>La partie d’ingénierie du parc en exploitation :</p>
+<li>Le premier, c’est la partie d’ingénierie du parc en exploitation :
 <ul>
-<li>Dans laquelle les équipes communes du CNEPE pilotent les modifications techniques à apporter sur les équipements côté ilôt conventionnel,</li>
-<li>Et le programme de “Grand Carénage”, dont le but est d’allonger la durée de vie des installations jusqu’à 60 voire 80 ans.</li>
+<li>Avec un focus sur le programme de “Grand Carénage”, dont le but est d’étendre la durée de vie des installations jusqu’à 60 voire 80 ans.</li>
 </ul></li>
-<li><p>Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de réacteurs de troisième génération, à la fois en France (c’est le cas du programme EPR2 et SMR) mais aussi à l’international, c’est le cas avec le projet HPC (Hinkley Point C), que je rementionnerai plus tard.</p></li>
+<li>Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de nouveaux réacteurs, à la fois en France (c’est le cas du programme EPR2) mais aussi à l’international.</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -745,12 +747,12 @@
 <aside class="notes">
 <p>Avant de parler de ça, je vais présenter ce qu’est le contrôle-commande.</p>
 <p>Si on veut faire une analogie, c’est un peu le cerveau et le système nerveux d’une centrale.</p>
-<p><strong>Une centrale c’est très complexe</strong>, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l’ilôt nucléaire et conventionnel.</p>
+<p><strong>Une centrale c’est très complexe</strong>, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et assez rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l’ilôt nucléaire et conventionnel.</p>
 <p>Tous ces moyens de pilotage sont réunis dans ce qu’on appelle une architecture de contrôle-commande, que je présente ici de manière très très simplifiée.</p>
 <ul>
 <li><p>Le <strong>Niveau 0</strong> regroupe les équipements comme les capteurs ou les actionneurs qui servent à l’action sur le procédé et à la prise d’informations.</p></li>
-<li><p>Le <strong>Niveau 1</strong> c’est le niveau central dans l’architecture de contrôle-commande, c’est là justement qu’on y trouve les fameuses armoires de contrôle commande qui gèrent les régulations de manière automatisée.</p></li>
-<li><p>Le <strong>Niveau 2</strong>, au dessus, il permet lui de superviser la tranche à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour lui dire d’arrêter un équipement particulier du niveau 0.</p></li>
+<li><p>Le <strong>Niveau 1</strong> c’est le niveau central dans l’architecture de contrôle-commande, c’est là justement qu’on va y trouver les fameuses armoires de contrôle commande.</p></li>
+<li><p>Le <strong>Niveau 2</strong>, au dessus, il permet lui de superviser le réacteur à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour envoyer un ordre d’ouverture ou de fermeture d’un équipement particulier du niveau 0.</p></li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -800,8 +802,9 @@
 <p><strong>Source :</strong> <a href="https://www.sfen.org/rgn/decryptage-edf-annonce-un-nouveau-calendrier-pour-les-epr-dhinkley-point-c/">EPR d’Hinkley Point C en construction – SFEN <iconify-icon role="img" inline="" icon="fa6-solid:link" aria-label="Icon link from fa6-solid Iconify.design set." title="Icon link from fa6-solid Iconify.design set."></iconify-icon></a></p>
 </div>
 <aside class="notes">
-<p>L’objectif de ces notes ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l’installation quand on perd une armoire spécifique. Là le périmètre de ces notes c’est l’EPR en construction à Hinkley Point C.</p>
-<p>Néanmoins il y a plusieurs difficultés dans cette activité, que j’ai listées ici :</p>
+<p>Dans la slide précédente on a dit que les armoires de controle commande font le lien entre les équipements (Niveau 0) et l’Interface Homme Machine (Niveau 2). En perdant une armoire donc, les opérateurs en salle de commande n’ont plus accès à certaines informations, perdent des alarmes, bref, ils perdent des moyens de conduite de l’installation.</p>
+<p>L’objectif des notes de perte donc ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l’installation quand on perd une armoire spécifique. Là le périmètre de ces notes c’est l’EPR en construction à Hinkley Point C, au Royaume-Uni.</p>
+<p>Il y a plusieurs difficultés dans cette activité, que j’ai listées ici :</p>
 <ul>
 <li>Beaucoup de sources de données à croiser, dans des formats qui n’ont pas été pensées pour communiquer entre eux,</li>
 <li>Plus de 110 fiches en tout à fournir au client,</li>
@@ -856,17 +859,17 @@
 </div>
 </div>
 <aside class="notes">
-<p>La version que j’ai développée d’HPConnect, va beaucoup plus loin que celle initialement pensée parce qu’elle intègre notamment :</p>
+<p>La version que j’ai développée d’HPConnect, va beaucoup plus loin que celle initialement conçue parce qu’elle intègre notamment :</p>
 <ul>
 <li>Les impacts liés à la sureté quand on perd un actionneur ou un capteur,</li>
 <li>Tout le formalisme de la fiche finale,</li>
 <li>Et elle prémache grandement le travail des ingénieurs pour faire l’analyse fonctionnelle, c’est à dire la partie que l’application ne peut pas faire, mais là où ils ont une réelle plus value.</li>
 </ul>
-<p>L’application est déployée sur une machine virtuelle, et donc n’importe qui chez EDF peut y accéder sans avoir à installer Rstudio et récupérer un fichier zip sorti d’un recoin sombre pour faire tourner l’appli, et l’interface ressemble à ça :</p>
+<p>L’application est déployée sur une machine virtuelle, et donc n’importe qui chez EDF peut y accéder sans avoir à installer Rstudio.</p>
+<p>L’interface ressemble à ça :</p>
 <p>L’onglet <strong>Table</strong> va permettre de sélectionner une armoire et une catégorie pour lister les pertes de cette catégorie dans le tableau noirci, en dessous.</p>
 <p>L’onglet <strong>Export</strong> il a pour objectif de générer une fiche par armoire, subdivisée en systèmes et en catégories (capteurs, alarmes, informations, etc.)</p>
 <p>Et enfin l’onglet <strong>Information</strong> a pour but de recenser les données qui ont été utilisées, d’où elles proviennent, quel est leur type, etc.</p>
-<p>A savoir que, toutes ces données ne sont pas ingérées directement dans l’application, il y a un package R que j’ai crée qui dispose de fonctions qui permettent de combiner les sources de manière propre, avec l’ensemble de la logique métier qui est documentée.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -915,23 +918,23 @@
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="oaszhcanrd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oaszhcanrd table {
+<div id="ixaoznewwu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ixaoznewwu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oaszhcanrd thead, #oaszhcanrd tbody, #oaszhcanrd tfoot, #oaszhcanrd tr, #oaszhcanrd td, #oaszhcanrd th {
+#ixaoznewwu thead, #ixaoznewwu tbody, #ixaoznewwu tfoot, #ixaoznewwu tr, #ixaoznewwu td, #ixaoznewwu th {
   border-style: none;
 }
 
-#oaszhcanrd p {
+#ixaoznewwu p {
   margin: 0;
   padding: 0;
 }
 
-#oaszhcanrd .gt_table {
+#ixaoznewwu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -957,12 +960,12 @@
   border-left-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_caption {
+#ixaoznewwu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oaszhcanrd .gt_title {
+#ixaoznewwu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -974,7 +977,7 @@
   border-bottom-width: 0;
 }
 
-#oaszhcanrd .gt_subtitle {
+#ixaoznewwu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -986,7 +989,7 @@
   border-top-width: 0;
 }
 
-#oaszhcanrd .gt_heading {
+#ixaoznewwu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -998,13 +1001,13 @@
   border-right-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_bottom_border {
+#ixaoznewwu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_col_headings {
+#ixaoznewwu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1019,7 +1022,7 @@
   border-right-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_col_heading {
+#ixaoznewwu .gt_col_heading {
   color: #FFFFFF;
   background-color: #003871;
   font-size: 100%;
@@ -1039,7 +1042,7 @@
   overflow-x: hidden;
 }
 
-#oaszhcanrd .gt_column_spanner_outer {
+#ixaoznewwu .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #003871;
   font-size: 100%;
@@ -1051,15 +1054,15 @@
   padding-right: 4px;
 }
 
-#oaszhcanrd .gt_column_spanner_outer:first-child {
+#ixaoznewwu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oaszhcanrd .gt_column_spanner_outer:last-child {
+#ixaoznewwu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oaszhcanrd .gt_column_spanner {
+#ixaoznewwu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1071,11 +1074,11 @@
   width: 100%;
 }
 
-#oaszhcanrd .gt_spanner_row {
+#ixaoznewwu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oaszhcanrd .gt_group_heading {
+#ixaoznewwu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,7 +1104,7 @@
   text-align: left;
 }
 
-#oaszhcanrd .gt_empty_group_heading {
+#ixaoznewwu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1116,15 +1119,15 @@
   vertical-align: middle;
 }
 
-#oaszhcanrd .gt_from_md > :first-child {
+#ixaoznewwu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oaszhcanrd .gt_from_md > :last-child {
+#ixaoznewwu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oaszhcanrd .gt_row {
+#ixaoznewwu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1143,7 +1146,7 @@
   overflow-x: hidden;
 }
 
-#oaszhcanrd .gt_stub {
+#ixaoznewwu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1156,7 +1159,7 @@
   padding-right: 5px;
 }
 
-#oaszhcanrd .gt_stub_row_group {
+#ixaoznewwu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1170,15 +1173,15 @@
   vertical-align: top;
 }
 
-#oaszhcanrd .gt_row_group_first td {
+#ixaoznewwu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oaszhcanrd .gt_row_group_first th {
+#ixaoznewwu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oaszhcanrd .gt_summary_row {
+#ixaoznewwu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1188,16 +1191,16 @@
   padding-right: 5px;
 }
 
-#oaszhcanrd .gt_first_summary_row {
+#ixaoznewwu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_first_summary_row.thick {
+#ixaoznewwu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oaszhcanrd .gt_last_summary_row {
+#ixaoznewwu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1210,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_grand_summary_row {
+#ixaoznewwu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1217,7 +1220,7 @@
   padding-right: 5px;
 }
 
-#oaszhcanrd .gt_first_grand_summary_row {
+#ixaoznewwu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1227,7 +1230,7 @@
   border-top-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_last_grand_summary_row_top {
+#ixaoznewwu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1237,11 +1240,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_striped {
+#ixaoznewwu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oaszhcanrd .gt_table_body {
+#ixaoznewwu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1250,7 +1253,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_footnotes {
+#ixaoznewwu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1264,7 +1267,7 @@
   border-right-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_footnote {
+#ixaoznewwu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1273,7 +1276,7 @@
   padding-right: 5px;
 }
 
-#oaszhcanrd .gt_sourcenotes {
+#ixaoznewwu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1287,7 +1290,7 @@
   border-right-color: #D3D3D3;
 }
 
-#oaszhcanrd .gt_sourcenote {
+#ixaoznewwu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1295,63 +1298,63 @@
   padding-right: 5px;
 }
 
-#oaszhcanrd .gt_left {
+#ixaoznewwu .gt_left {
   text-align: left;
 }
 
-#oaszhcanrd .gt_center {
+#ixaoznewwu .gt_center {
   text-align: center;
 }
 
-#oaszhcanrd .gt_right {
+#ixaoznewwu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oaszhcanrd .gt_font_normal {
+#ixaoznewwu .gt_font_normal {
   font-weight: normal;
 }
 
-#oaszhcanrd .gt_font_bold {
+#ixaoznewwu .gt_font_bold {
   font-weight: bold;
 }
 
-#oaszhcanrd .gt_font_italic {
+#ixaoznewwu .gt_font_italic {
   font-style: italic;
 }
 
-#oaszhcanrd .gt_super {
+#ixaoznewwu .gt_super {
   font-size: 65%;
 }
 
-#oaszhcanrd .gt_footnote_marks {
+#ixaoznewwu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oaszhcanrd .gt_asterisk {
+#ixaoznewwu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oaszhcanrd .gt_indent_1 {
+#ixaoznewwu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oaszhcanrd .gt_indent_2 {
+#ixaoznewwu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oaszhcanrd .gt_indent_3 {
+#ixaoznewwu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oaszhcanrd .gt_indent_4 {
+#ixaoznewwu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oaszhcanrd .gt_indent_5 {
+#ixaoznewwu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1402,6 +1405,7 @@
 <p>Pour conclure sur ce premier sujet, je trouve ça intéressant de mentionner les gains liés au développement de ce type de solutions.</p>
 <p>On peut les décomposer en 2 grandes typologies : les <strong>Gains de Temps</strong> qui se traduisent en gains financiers et surtout aussi les <strong>Gains de qualité</strong> pour le livrable final.</p>
 <p>Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu’on peut quantifier à 40 heures de travail économisé par fiche. L’estimation vaut ce qu’elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur de ce type.</p>
+<p>Enfin, une partie que je n’ai pas forcément mentionné, c’est la documentation de chaque aspect métier : pourquoi est ce qu’on fait tel ou tel choix dans le code. ça c’est en annexe, et on peut revenir dessus après.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1447,8 +1451,12 @@
 <p><span class="math inline">\(\rightarrow\)</span> Une fois la session sur simulateur terminée, possibilité d’exporter les résultats de simulation sous forme de fichier <iconify-icon role="img" inline="" icon="fa6-solid:file-csv" aria-label="Icon file-csv from fa6-solid Iconify.design set." title="Icon file-csv from fa6-solid Iconify.design set."></iconify-icon>.</p>
 <aside class="notes">
 <p>Pour introduire cette partie, je vais d’abord parler de simulateurs.</p>
-<p>De manière analogue à ce qu’on peut trouver dans l’aviation avec les simulateurs de vol, dans le nucléaire vous avez aussi des simulateurs dont le but va être de reproduire au mieux la tranche et les phénomènes physiques, en modélisant tous les sytèmes et la logique de contrôle commande.</p>
-<p>Le but d’un simulateur à première vue, c’est faire de la formation et c’est vrai, mais pas que, ça peut aussi être utilisé dans le cadre de vérification de modifications sur l’installation et de rédaction de notes techniques - plus dans le cadre du groupe, etc etc.</p>
+<p>De manière analogue à ce qu’on peut trouver dans l’aviation avec les simulateurs de vol, dans le nucléaire vous avez aussi des simulateurs !</p>
+<ul>
+<li>Le but va être de reproduire au mieux le réacteur et les phénomènes physiques, en modélisant tous les sytèmes et la logique de contrôle commande.</li>
+</ul>
+<p>Le but d’un simulateur, c’est faire de la formation, c’est vrai, mais pas que, ça peut aussi être utilisé dans le cadre de vérification de modifications sur l’installation, de procédures d’essai, etc etc.</p>
+<p>Typiquement dans le cadre du démarrage de Flamanville 3, ça a beaucoup été utilisé.</p>
 <p>Une fois qu’on a terminé une session sur simulateur, on peut exporter les résultats de simulation sous forme de fichier csv.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1468,23 +1476,23 @@
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<div id="eagoivmleg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eagoivmleg table {
+<div id="gdlduzjymu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gdlduzjymu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eagoivmleg thead, #eagoivmleg tbody, #eagoivmleg tfoot, #eagoivmleg tr, #eagoivmleg td, #eagoivmleg th {
+#gdlduzjymu thead, #gdlduzjymu tbody, #gdlduzjymu tfoot, #gdlduzjymu tr, #gdlduzjymu td, #gdlduzjymu th {
   border-style: none;
 }
 
-#eagoivmleg p {
+#gdlduzjymu p {
   margin: 0;
   padding: 0;
 }
 
-#eagoivmleg .gt_table {
+#gdlduzjymu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1510,12 +1518,12 @@
   border-left-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_caption {
+#gdlduzjymu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eagoivmleg .gt_title {
+#gdlduzjymu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1527,7 +1535,7 @@
   border-bottom-width: 0;
 }
 
-#eagoivmleg .gt_subtitle {
+#gdlduzjymu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1539,7 +1547,7 @@
   border-top-width: 0;
 }
 
-#eagoivmleg .gt_heading {
+#gdlduzjymu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1551,13 +1559,13 @@
   border-right-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_bottom_border {
+#gdlduzjymu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_col_headings {
+#gdlduzjymu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1572,7 +1580,7 @@
   border-right-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_col_heading {
+#gdlduzjymu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1592,7 +1600,7 @@
   overflow-x: hidden;
 }
 
-#eagoivmleg .gt_column_spanner_outer {
+#gdlduzjymu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1604,15 +1612,15 @@
   padding-right: 4px;
 }
 
-#eagoivmleg .gt_column_spanner_outer:first-child {
+#gdlduzjymu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eagoivmleg .gt_column_spanner_outer:last-child {
+#gdlduzjymu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eagoivmleg .gt_column_spanner {
+#gdlduzjymu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1624,11 +1632,11 @@
   width: 100%;
 }
 
-#eagoivmleg .gt_spanner_row {
+#gdlduzjymu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eagoivmleg .gt_group_heading {
+#gdlduzjymu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1654,7 +1662,7 @@
   text-align: left;
 }
 
-#eagoivmleg .gt_empty_group_heading {
+#gdlduzjymu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1669,15 +1677,15 @@
   vertical-align: middle;
 }
 
-#eagoivmleg .gt_from_md > :first-child {
+#gdlduzjymu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eagoivmleg .gt_from_md > :last-child {
+#gdlduzjymu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eagoivmleg .gt_row {
+#gdlduzjymu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1696,7 +1704,7 @@
   overflow-x: hidden;
 }
 
-#eagoivmleg .gt_stub {
+#gdlduzjymu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1709,7 +1717,7 @@
   padding-right: 5px;
 }
 
-#eagoivmleg .gt_stub_row_group {
+#gdlduzjymu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1723,15 +1731,15 @@
   vertical-align: top;
 }
 
-#eagoivmleg .gt_row_group_first td {
+#gdlduzjymu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eagoivmleg .gt_row_group_first th {
+#gdlduzjymu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eagoivmleg .gt_summary_row {
+#gdlduzjymu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1741,16 +1749,16 @@
   padding-right: 5px;
 }
 
-#eagoivmleg .gt_first_summary_row {
+#gdlduzjymu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_first_summary_row.thick {
+#gdlduzjymu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eagoivmleg .gt_last_summary_row {
+#gdlduzjymu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1760,7 +1768,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_grand_summary_row {
+#gdlduzjymu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1770,7 +1778,7 @@
   padding-right: 5px;
 }
 
-#eagoivmleg .gt_first_grand_summary_row {
+#gdlduzjymu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1780,7 +1788,7 @@
   border-top-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_last_grand_summary_row_top {
+#gdlduzjymu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1790,11 +1798,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_striped {
+#gdlduzjymu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eagoivmleg .gt_table_body {
+#gdlduzjymu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1803,7 +1811,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_footnotes {
+#gdlduzjymu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1817,7 +1825,7 @@
   border-right-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_footnote {
+#gdlduzjymu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1826,7 +1834,7 @@
   padding-right: 5px;
 }
 
-#eagoivmleg .gt_sourcenotes {
+#gdlduzjymu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1840,7 +1848,7 @@
   border-right-color: #D3D3D3;
 }
 
-#eagoivmleg .gt_sourcenote {
+#gdlduzjymu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1848,63 +1856,63 @@
   padding-right: 5px;
 }
 
-#eagoivmleg .gt_left {
+#gdlduzjymu .gt_left {
   text-align: left;
 }
 
-#eagoivmleg .gt_center {
+#gdlduzjymu .gt_center {
   text-align: center;
 }
 
-#eagoivmleg .gt_right {
+#gdlduzjymu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eagoivmleg .gt_font_normal {
+#gdlduzjymu .gt_font_normal {
   font-weight: normal;
 }
 
-#eagoivmleg .gt_font_bold {
+#gdlduzjymu .gt_font_bold {
   font-weight: bold;
 }
 
-#eagoivmleg .gt_font_italic {
+#gdlduzjymu .gt_font_italic {
   font-style: italic;
 }
 
-#eagoivmleg .gt_super {
+#gdlduzjymu .gt_super {
   font-size: 65%;
 }
 
-#eagoivmleg .gt_footnote_marks {
+#gdlduzjymu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eagoivmleg .gt_asterisk {
+#gdlduzjymu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eagoivmleg .gt_indent_1 {
+#gdlduzjymu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eagoivmleg .gt_indent_2 {
+#gdlduzjymu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eagoivmleg .gt_indent_3 {
+#gdlduzjymu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eagoivmleg .gt_indent_4 {
+#gdlduzjymu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eagoivmleg .gt_indent_5 {
+#gdlduzjymu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2028,14 +2036,14 @@ de simulation standard</th>
 </div>
 <aside class="notes">
 <p>C’est pour ça que ViZiR a été crée.</p>
-<p>Pour la petite histoire ça s’appelle ViZiR parce que c’était un acronyme de Visualisation sur R, mais voilà, les applis sur R shiny comme celle que j’ai pu vous présenter dans la partie précédente c’est bien MAIS ça gère très mal un grand nombre d’utilisateurs en simultanné (or y’a plusieurs entités d’EDF qui manifestent leur désir d’utiliser ViZiR donc plusieurs utilisateurs en simultanné c’est clairement possible).</p>
-<p>Aussi, si jamais y’a pas de gestion d’erreur appropriée, ça déconnecte automatiquement les utilisateurs du serveur. Niveau stabilité on a vu mieux.</p>
-<p>Et surtout, R c’est pas un langage qui a le vent en poupe chez EDF donc y’a pas forcément d’infrastructure adaptée où on peut déployer facilement des applis shiny, et ça ça compte.</p>
+<p>Pour la petite histoire ça s’appelle ViZiR parce que c’était un acronyme de Visualisation sur R,</p>
+<p>MAIS, je pense que madame Scholler va être un peu déçue, mais voilà les applis Rshiny c’est bien mais voilà, ça gère très mal un grand nombre d’utilisateurs en simultanné (or y’a plusieurs entités d’EDF qui veulent utiliser ViZiR donc un nombre important d’utilisateurs c’est clairement possible).</p>
+<p>Et surtout, R c’est pas un langage qui a le vent en poupe chez EDF donc y’a pas forcément d’infrastructure adaptée où on peut déployer facilement des applis shiny, et ça ça compte, et c’est pour ça entre autres qu’on est passé à Python, dans un. C’était un travail titanesque en peu de temps, mais un peu de défi ça fait pas de mal.</p>
 <hr>
-<p>Maintenant la question après cet aparté c’est qu’est ce que permet ViZiR :</p>
+<p>Maintenant la question après cet aparté c’est qu’est ce que ViZiR permet de faire :</p>
 <ul>
-<li>Un temps de paramétrage qui par rapport à Excel, est divisé par 10</li>
-<li>Ensuite, grâce aux bases de données de simulateur, on peut récupérer les libellés associés aux capteurs, les unités, etc.</li>
+<li>Réduire le temps de paramétrage des graphiques par rapport à Excel,</li>
+<li>Ensuite, grâce aux bases de données de simulateur, on peut récupérer les libellés des capteurs, les unités du capteur, etc etc.</li>
 <li>Surtout on a un graphique qui est dynamique, on peut facilement zoomer, regarder les valeurs des capteurs à un instant t, etc.</li>
 <li>On a aussi des fonctionnalités comme les Axe Y secondaires et le groupement d’axes</li>
 <li>Et enfin la fonctionnalité vraiment intéressante, c’est le rechargement d’une étude</li>
@@ -2103,43 +2111,16 @@ de simulation standard</th>
 </div>
 </div>
 <aside class="notes">
-<p>Maintenant, voilà ce que ça donne :</p>
+<p>Voilà ce que ça donne :</p>
 <p>Une fois le fichier csv importé on peut sélectionner des capteurs pour les afficher dans la fenêtre graphique. Il y a deux types de capteurs qui ont leur propre fenetre graphique : les capteurs analogiques, et les capteurs TOR (Tout Ou Rien) qui sont simplement 0 ou 1.</p>
 <p>Initialement, chaque capteur a son propre axe des ordonnées dédié, mais on peut facilement faire des combinaisons d’axes, et c’est particulièrement intéressant quand on regarde la même unité.</p>
 <ul>
 <li><p>Ensuite on peut subdiviser la fenêtre graphique,</p></li>
-<li><p>Changer le type de tracé, là au lieu de lignes on a seulement les points, ça peut être utile pour identifier les périodes d’acquisition des capteurs.</p></li>
+<li><p>Changer le type de tracé, là au lieu de lignes on a seulement les points.</p></li>
 <li><p>Le multigraph permet de comparer plusieurs graphiques cote à cote.</p></li>
 <li><p>Aspect de personnalisation assez avancé : on peut changer le titre, la taille du titre, la couleur des axes, les minimum et maximum, ajouter des annotations…</p></li>
 <li><p>Et surtout une fois qu’on a fait toutes ces personnalisations, on peut les sauvegarder dans un fichier json, et recharger la config de paramètres ensuite. Grâce à ça on s’assure qu’il y a une bonne reproductibilité des études.</p></li>
 </ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="partie-technique" class="slide level2 smaller">
-<h2>Partie Technique</h2>
-<p><br></p>
-<p><strong>🛠 Stack technique utilisée :</strong></p>
-<ul>
-<li><code>plotly</code></li>
-<li><code>polars</code></li>
-<li><code>streamlit</code></li>
-</ul>
-<p>Utilisation avancée : <code>session_state</code> de streamlit</p>
-<p>Intégration dans un environnement de test : Datatools (Kubernetes / conteneurs)</p>
-<p>Présence de tests unitaires,</p>
-<p>bonnes pratiques de code, documentation intégrée</p>
-<aside class="notes">
-
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2179,13 +2160,14 @@ de simulation standard</th>
 </div>
 </div>
 <aside class="notes">
-<p>Travailler chez EDF ça a été une expérience professionnelle très agréable et enrichissante, j’ai eu l’avantage de travailler sur 2 sujets différents :</p>
+<p>Travailler chez EDF ça a été une expérience professionnelle très agréable et enrichissante, avec tout d’abord un aspect relationnel qui m’a plu : comprendre les attentes des collègues, des clients. J’ai aussi du organiser mon temps de travail intelligemment parce que j’ai eu 2 sujets différents :</p>
 <ul>
 <li>Les pertes d’armoire de controle commande, avec l’application HPConnect,</li>
 <li>Et le post traitement de résultats de simulation avec ViZiR</li>
 </ul>
-<p>Ca m’a permis de mobiliser beaucoup de compétences techniques qui sont enseignées au Mécen, mais surtout aussi d’apprendre, et je le dis avec humilité, beaucoup de choses spécifiques au domaine du nucléaire puisque j’étais en contact direct avec des ingénieurs du CNEPE, et j’ai aussi eu l’occasion d’aller sur le site de production de Dampierre, on voit d’ailleurs à gauche l’aéroréfrigérant de la tranche à l’arrêt, qu’on a pu visiter.</p>
-<p>Une des choses que j’ai apprécié c’est le fait que maintenant ce que j’ai développé c’est utilisé et valorisé. C’est pas quelque chose d’expérimental qui reste dans son coin, y’a un véritable impact. Pour garantir le mantien de la solution dans le futur je me suis aussi beaucoup appuyé sur le groupe SID, que Guillaume vous présentera par la suite et je me suis aussi mis en contact avec l’équipe Data Science coté Edvance (une filiale d’EDF), qui lance beaucoup de choses sur ces sujets.</p>
+<p>Ca m’a permis de mobiliser beaucoup de compétences techniques qui sont enseignées au Mécen, mais surtout aussi d’apprendre, et je le dis avec humilité, beaucoup de choses spécifiques au domaine du nucléaire parce que j’étais en contact direct avec les meilleurs ingénieurs du CNEPE (y’en a 2 dans cette salle déjà).</p>
+<p>Une des choses que j’ai apprécié c’est le fait que maintenant ce que j’ai développé c’est utilisé et valorisé. C’est pas quelque chose d’expérimental qui reste dans son coin, y’a un véritable impact.</p>
+<p>Et pour finir, j’ai aussi eu l’occasion d’aller à la Centrale de Dampierre, c’est la belle photo à gauche et oui, on a pu visiter l’aéroréfrigérant et c’est impressionnant. Quoi de mieux pour finir que quelques photos ?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2197,6 +2179,20 @@ de simulation standard</th>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="dampierre" class="slide level2">
+<h2>Dampierre</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="assets/images/aero_inside.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="assets/images/aero_inside.jpg" class="quarto-figure quarto-figure-center" style="width:85.0%"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p><a href="assets/images/sdm.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img data-src="assets/images/sdm.jpg" class="quarto-figure quarto-figure-center" style="width:65.0%"></a> <a href="assets/images/turbine_bp.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img data-src="assets/images/turbine_bp.jpg" class="quarto-figure quarto-figure-center" style="width:65.0%"></a></p>
+</div>
+</div>
 </section>
 <section id="section" class="slide level2 center">
 <h2></h2>
@@ -2227,12 +2223,55 @@ de simulation standard</th>
 <h2>Package R <code>{cabinetloader}</code></h2>
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><a href="assets/images/cabinetloader_function_reference.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="assets/images/cabinetloader_function_reference.PNG" class="quarto-figure quarto-figure-left" style="width:70.0%"></a></p>
+<p><a href="assets/images/cabinetloader_function_reference.PNG" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img data-src="assets/images/cabinetloader_function_reference.PNG" class="quarto-figure quarto-figure-left" style="width:70.0%"></a></p>
 </figure>
 </div>
 </section>
-<section id="annexe---session-state" class="slide level2 smaller">
-<h2>Annexe - session state</h2>
+<section id="vizir-compléments" class="slide level2 smaller">
+<h2>ViZiR – Compléments</h2>
+<p><br></p>
+<p><strong>🛠 Stack technique utilisée (python) :</strong></p>
+<ul>
+<li><code>streamlit</code> <span class="math inline">\(\Rightarrow\)</span> Librairie permettant de créer l’interface utilisateur d’une application sur <strong>python</strong></li>
+<li><code>plotly</code> <span class="math inline">\(\Rightarrow\)</span> Librairie de visualisation interactive</li>
+<li><code>polars</code> <span class="math inline">\(\Rightarrow\)</span> Librairie de manipulation de données</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Industrialisation de la solution</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Présence de tests unitaires,</p></li>
+<li><p>Repository Git cohérent,</p></li>
+<li><p>Intégration dans un environnement de déploiement : <strong>Datatools</strong> (basé sur OpenShift et Kubernetes),</p></li>
+<li><p>Utilisation de bonnes pratiques de code (<strong>PEP</strong>) et documentation intégrée,</p></li>
+<li><p>Utilisation avancée de la notion de <code>session_state</code> sur <code>streamlit</code></p></li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Kubernetes ça permet d’orchestrer des conteneurs et gérer les charges de travail de ces conteneurs.</p>
+<p>Openshift ça utilise Kubernetes</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="vizir---session_state" class="slide level2 smaller">
+<h2>ViZiR - <code>session_state</code></h2>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="kw">def</span> initialize_states() <span class="op">-&gt;</span> <span class="va">None</span>:</span>
 <span id="cb1-2"><a href=""></a>    <span class="co">"""</span></span>
@@ -2255,12 +2294,9 @@ de simulation standard</th>
 <span id="cb1-19"><a href=""></a>    _states_graph()</span>
 <span id="cb1-20"><a href=""></a>    _states_admin()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <aside class="notes">
-<p>Au sein du CNEPE, j’ai travaillé dans le service Fonctionnement, et plus précisément dans le groupe Fonctionnement Général et Performance.</p>
-<hr>
 <p>Alors y’a plusieurs raisons qui expliquent cette part très elevé, mais une que j’ai choisi de mentionner c’est l’aspect d’approvisionnement électrique en continu que permet le nucléaire. Typiquement, à minuit vous pouvez produire la même quantité d’eléctricité qu’à midi.</p>
 <p>Par contre, essayer de faire la même chose avec des panneaux photovoltaiques, ça marche pas trop.</p>
 <p>Enuite, en deuxième position dans le mix avec à peu près 10%, vous avez l’hydroélectrique. Un des intérêts majeurs de ce type d’énergie c’est sa flexibilité : elle s’adapte très très bien aux variations de la demande quand il y a des pics de consommation.</p>
-<p>Autres gains : tout le process est documenté</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2750,7 +2786,7 @@ de simulation standard</th>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;

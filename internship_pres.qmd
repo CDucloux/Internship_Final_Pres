@@ -3,7 +3,7 @@ title: "**Pertes d'armoire de contrôle-commande et post-traitement de résultat
 subtitle: "![](assets/images/UT_logo.jpg){width=45%} ![](assets/images/MECEN_logo.png){width=23%} <hr class='divider'>"
 author: "**Corentin Ducloux** -- Master 2 Mécen"
 title-slide-attributes: 
-    data-notes: "Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d'études. Pendant ce stage j'ai eu deux sujets principaux à aborder : un qui traite de problématiques I&C et l'autre qui est plus axé simulateur. Si ces termes ne vous parlent pas pour l'instant, il seront explicités par la suite. Je remercie évidemment mes deux tuteurs, Alexandre Padet et Grégoire Bouvet pour leur accompagnement."
+    data-notes: "Bonjour à tous, je vais vous présenter une version synthétisée de mes travavaux chez EDF au sein du groupe Fonctionnement Général et Performance dans le cadre de mon stage de fin d'études. Pendant ce stage j'ai eu deux sujets principaux à aborder : un qui traite de problématiques de **controle-commande** et l'autre qui est plus axé **simulateur**. Si ces termes vous font un petit peu peur pour l'instant, il seront explicités par la suite. Je tiens à remercier mes deux tuteurs chez EDF, Alexandre Padet et Grégoire Bouvet pour leur accompagnement et M. Perrollaz, mon tuteur universitaire, pour nos échanges."
 date: 09-13-2024
 date-format: DD/MM/YYYY
 format: 
@@ -43,7 +43,7 @@ library(gt)
 - [Présentation du CNEPE {{< iconify iconoir page-right >}}](#présentation-du-cnepe)
 
 :::{.notes}
-je vais commencer par introduire EDF et le CNEPE
+Tout d'abord, je vais commencer par introduire EDF et le CNEPE
 :::
 
 ## Table des matières
@@ -59,7 +59,7 @@ je vais commencer par introduire EDF et le CNEPE
 - [Gains estimés -- HPConnect {{< iconify iconoir page-right >}}](#gains-estimés-hpconnect)
 
 :::{.notes}
-Ensuite je vais expliciter ce que j'ai fait dans le cadre de ma première et de ma deuxième mission,
+Ensuite je vais expliciter ce que j'ai fait dans le cadre de ma première et de ma seconde mission,
 :::
 
 ## Table des matières
@@ -72,12 +72,11 @@ Ensuite je vais expliciter ce que j'ai fait dans le cadre de ma première et de 
 - [Exemple de données de simulation {{< iconify iconoir page-right >}}](#exemple-de-données-de-simulation)
 - [ViZiR {{< iconify iconoir page-right >}}](#vizir)
 - [ViZiR -- Démonstration {{< iconify iconoir page-right >}}](#vizir-démonstration)
-- blabla
 
 [{{< iconify mdi table-of-contents >}} CONCLUSION](#conclusion)
 
 :::{.notes}
-Et puis enfin je concluerai.
+Et puis enfin je concluerai en partageant mon retour d'expérience sur le stage.
 :::
 
 # 1 | INTRODUCTION
@@ -104,9 +103,9 @@ Je pense ne pas me tromper en affirmant que la majorité d'entre vous connait d�
 
 EDF c'est une société française de production d'electricité, et c'est aussi un fournisseur, que ce soit pour les particuliers ou les entreprises.
 
-Pour un peu d'histoire, EDF a été crée en 1946 en tant que Monopole d'Etat, et c'est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen que c'est devenu une société anonyme, qui n'est plus en situation de monopole au niveau de la fourniture d'électricité, c'est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.
+Pour un peu d'histoire, EDF a été crée en 1946 en tant que Monopole d'Etat (plus précisement un EPIC), et c'est dans le cadre de l’ouverture du marché de l’énergie au niveau éuropéen (en 2004) que c'est devenu une société anonyme, qui n'est plus en situation de monopole au niveau de la fourniture d'électricité, c'est pour ça que vous avez des fournisseurs alternatifs comme Eni ou Engie.
 
-Alors c'est une Société Anonyme mais, quand même, aujourd'hui, 100% du capital est détenu par l'Etat Français, donc il y a une forte mission de service public derrière.
+Alors c'est une Société Anonyme mais, aujourd'hui, 100% du capital est détenu par l'Etat Français, donc il y a une forte mission de service public derrière.
 
 :::
 
@@ -119,9 +118,9 @@ Alors c'est une Société Anonyme mais, quand même, aujourd'hui, 100% du capita
 :::
 
 :::{.notes}
-Je vais continuer cette introduction assez générale en utilisant quelques chiffres clés concernant le groupe.
+Je vais continuer cette introduction en utilisant quelques chiffres clés concernant le groupe.
 
-Avec un chiffre d’affaires de 140 milliards d’euros et un effectif de 180000 personnes en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c'est particulièrement vrai en France et en Europe. 
+Que ce soit le Chiffre d'affaires : 140 milliards, ou l'effectif : 180000 personnes, le budget de R&D, en 2023, EDF est un des grands leaders mondiaux de l’énergie, et c'est particulièrement vrai en France comme en Europe. 
 :::
 
 ## Mix électrique d'EDF en France {.smaller}
@@ -158,9 +157,7 @@ $\rightarrow$ **♻️ Plus de 90% d'électricité bas carbone.**
 :::{.notes}
 La production mondiale d'éléctricité du groupe, qui est un indicateur présent sur la slide précédente, c'est 467 TerraWatts heure en 2023, dont les 3/4 à peu près sont produits en France.
 
-Dans le mix eléctrique français on voit surtout l'importance considérable de l'énergie d'origine nucléaire.
-
-Au delà de ça on voit en fait que le mix électrique en France pour EDF il est de facto presque entièrement décarbonné, grâce au nucléaire et à l'hydroélectrique.
+Dans le mix eléctrique français on voit surtout l'importance considérable de l'énergie d'origine nucléaire, suivi ensuite de l'hydroélectrique. En fait on voit que le mix électrique en France pour EDF il est de facto presque entièrement décarbonné, grâce à la part importante d'hydroélectrique et surtout grâce au nucléaire.
 :::
 
 ## Parc nucléaire français {.smaller}
@@ -190,14 +187,16 @@ Au delà de ça on voit en fait que le mix électrique en France pour EDF il est
 
 ::: {.callout-tip appearance="simple"}
 
-Une tranche de 900 MW produit en moyenne chaque mois **500 000 MWh**, ce qui correspond à la consommation de **400 000 foyers** environ.
+Un réacteur de 900 MW produit en moyenne chaque mois **500 000 MWh**, ce qui correspond à la consommation de **400 000 foyers** environ.
 
 :::
 
 :::{.notes}
-Pour repasser sur le sujet du nucléaire, on a en France un parc important, avec 57 réacteurs, qu'on appelle aussi tranches, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts. Et on a, à gauche, la carte de l'implantation des tranches sur le territoire, à noter qu'il manque Flamanville 3 par contre, mais elle est bien démarrée.
+Parce qu'en effet concernant le nucléaire, on a en France un parc important, avec 57 réacteurs, qui sont découpés en plusieurs paliers, ici à droite, selon la puissance en Megawatts. 
 
-Pour avoir des ordres de grandeur, une tranche de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près
+Tous ces réacteurs appartiennent à la filière du REP : le Réacteur à Eau Préssurisée. Petit apparté : on a pas de RBMK comme a Tchernobyl ni de Réacteur à eau Bouillante comme celui de Fukushima. 
+
+Pour avoir des ordres de grandeur, un réacteur de 900 MW produit en moyenne chaque mois 500 000 MegaWatt heure, soit ce que consomme 400 000 foyers à peu près.
 :::
 
 ## Présentation du CNEPE {.smaller}
@@ -227,20 +226,24 @@ Le CNEPE ^[<u>C</u>entre <u>N</u>ational d'<u>E</u>quipements de <u>P</u>roducti
 :::
 ::::
 
+:::{.caption-long-2}
+**Source :** [Ilot nucléaire et Ilot conventionnel -- IRSN {{< iconify fa6-solid link >}}](https://www.irsn.fr/savoir-comprendre/surete/presentation-generale-dun-reacteur-nucleaire)
+:::
+
 :::{.notes}
 
-Je vous présente le CNEPE parce que c'est le centre d'ingénierie ou j'ai effectué mon stage et dont la majeure partie du travail se concentre sur l'ilot conventionnel d'une installation nucléaire. 
+EDF est découpée en centres d'ingénierie qui s'occupe d'activités distinctes.
 
-L'ilot conventionnel, qu'on peut visualiser à droite de cette image, regroupe : La source froide, les aéroréfrigérants (les grandes tours caractéristiques du nucléaire), et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.
+Le CNEPE, ou j'ai effectué mon stage, s'occupe de l'ilot conventionnel d'une installation nucléaire. 
+
+L'ilot conventionnel, qu'on peut visualiser à droite de cette image, regroupe : La source froide (un fleuve ou la mer), éventuellement des aéroréfrigérants, et la Salle des Machines, dans laquelle on trouve le groupe turbo-alternateur.
 
 Plus précisément, les activités du CNEPE se composent de deux grands axes :
 
-- La partie d'ingénierie du parc en exploitation :
+- Le premier, c'est la partie d'ingénierie du parc en exploitation :
+    - Avec un focus sur le programme de "Grand Carénage", dont le but est d'étendre la durée de vie des installations jusqu'à 60 voire 80 ans.
 
-    - Dans laquelle les équipes communes du CNEPE pilotent les modifications techniques à apporter sur les équipements côté ilôt conventionnel,
-    - Et le programme de "Grand Carénage", dont le but est d'allonger la durée de vie des installations jusqu'à 60 voire 80 ans.
-
-- Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de réacteurs de troisième génération, à la fois en France (c'est le cas du programme EPR2 et SMR) mais aussi à l'international, c'est le cas avec le projet HPC (Hinkley Point C), que je rementionnerai plus tard.
+- Le développement des projets Nouveau Nucléaire, qui vise à lancer les programmes de construction de nouveaux réacteurs, à la fois en France (c'est le cas du programme EPR2) mais aussi à l'international.
 :::
 
 # 2 | MISSIONS
@@ -277,15 +280,15 @@ Avant de parler de ça, je vais présenter ce qu'est le contrôle-commande.
 
 Si on veut faire une analogie, c'est un peu le cerveau et le système nerveux d'une centrale.
 
-**Une centrale c'est très complexe**, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l'ilôt nucléaire et conventionnel.
+**Une centrale c'est très complexe**, il y a des milliers de systèmes qui interagissent : il faut un pilotage fiable et assez rapide pour gérer tous les paramètres qui sont nécessaires au bon fonctionnement de l'ilôt nucléaire et conventionnel.
 
 Tous ces moyens de pilotage sont réunis dans ce qu'on appelle une architecture de contrôle-commande, que je présente ici de manière très très simplifiée.
 
 - Le **Niveau 0** regroupe les équipements comme les capteurs ou les actionneurs qui servent à l'action sur le procédé et à la prise d'informations.
 
-- Le **Niveau 1** c'est le niveau central dans l'architecture de contrôle-commande, c'est là justement qu'on y trouve les fameuses armoires de contrôle commande qui gèrent les régulations de manière automatisée.
+- Le **Niveau 1** c'est le niveau central dans l'architecture de contrôle-commande, c'est là justement qu'on va y trouver les fameuses armoires de contrôle commande.
 
-- Le **Niveau 2**, au dessus, il permet lui de superviser la tranche à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour lui dire d'arrêter un équipement particulier du niveau 0.
+- Le **Niveau 2**, au dessus, il permet lui de superviser le réacteur à travers une Interface Homme Machine, la Salle de Commande. Le niveau 2 peut envoyer des signaux au niveau 1 pour envoyer un ordre d'ouverture ou de fermeture d'un équipement particulier du niveau 0.
 :::
 
 ## Etudes de perte d'armoires (HPC) {.smaller}
@@ -321,9 +324,11 @@ $\rightarrow$ Création d'une application {{< iconify fa6-brands r-project >}} [
 :::
 
 :::{.notes}
-L'objectif de ces notes ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l'installation quand on perd une armoire spécifique. Là le périmètre de ces notes c'est l'EPR en construction à Hinkley Point C.
+Dans la slide précédente on a dit que les armoires de controle commande font le lien entre les équipements (Niveau 0) et l'Interface Homme Machine (Niveau 2). En perdant une armoire donc, les opérateurs en salle de commande n'ont plus accès à certaines informations, perdent des alarmes, bref, ils perdent des moyens de conduite de l'installation.
 
-Néanmoins il y a plusieurs difficultés dans cette activité, que j'ai listées ici :
+L'objectif des notes de perte donc ça va être de décrire les conséquences fonctionnelles et les conséquences liées à la sureté de l'installation quand on perd une armoire spécifique. Là le périmètre de ces notes c'est l'EPR en construction à Hinkley Point C, au Royaume-Uni.
+
+Il y a plusieurs difficultés dans cette activité, que j'ai listées ici :
 
 - Beaucoup de sources de données à croiser, dans des formats qui n'ont pas été pensées pour communiquer entre eux,
 - Plus de 110 fiches en tout à fournir au client,
@@ -357,13 +362,15 @@ Pour toutes ces raisons, l'idée d'un de mes collègues a été d'automatiser la
 
 :::{.notes}
 
-La version que j'ai développée d'HPConnect, va beaucoup plus loin que celle initialement pensée parce qu'elle intègre notamment :
+La version que j'ai développée d'HPConnect, va beaucoup plus loin que celle initialement conçue parce qu'elle intègre notamment :
 
 - Les impacts liés à la sureté quand on perd un actionneur ou un capteur,
 - Tout le formalisme de la fiche finale,
 - Et elle prémache grandement le travail des ingénieurs pour faire l'analyse fonctionnelle, c'est à dire la partie que l'application ne peut pas faire, mais là où ils ont une réelle plus value.
 
-L'application est déployée sur une machine virtuelle, et donc n'importe qui chez EDF peut y accéder sans avoir à installer Rstudio et récupérer un fichier zip sorti d'un recoin sombre pour faire tourner l'appli, et l'interface ressemble à ça :
+L'application est déployée sur une machine virtuelle, et donc n'importe qui chez EDF peut y accéder sans avoir à installer Rstudio.
+
+L'interface ressemble à ça :
 
 L'onglet **Table** va permettre de sélectionner une armoire et une catégorie pour lister les pertes de cette catégorie dans le tableau noirci, en dessous.
 
@@ -371,7 +378,6 @@ L'onglet **Export** il a pour objectif de générer une fiche par armoire, subdi
 
 Et enfin l'onglet **Information** a pour but de recenser les données qui ont été utilisées, d'où elles proviennent, quel est leur type, etc.
 
-A savoir que, toutes ces données ne sont pas ingérées directement dans l'application, il y a un package R que j'ai crée qui dispose de fonctions qui permettent de combiner les sources de manière propre, avec l'ensemble de la logique métier qui est documentée.
 :::
 
 ## Exemple de Fiche de sortie
@@ -451,6 +457,8 @@ Pour conclure sur ce premier sujet, je trouve ça intéressant de mentionner les
 On peut les décomposer en 2 grandes typologies : les **Gains de Temps** qui se traduisent en gains financiers et surtout aussi les **Gains de qualité** pour le livrable final.
 
 Par rapport à une rédaction manuelle d’une fiche de perte d’armoire de contrôle-commande, l’application va permettre un gain de temps important, qu'on peut quantifier à 40 heures de travail économisé par fiche. L'estimation vaut ce qu'elle vaut, mais elle est pas forcément si loin de la réalité. Surtout, vu le nombre de fiches à générer, on se retrouve rapidement dans des ordres de grandeur de ce type.
+
+Enfin, une partie que je n'ai pas forcément mentionné, c'est la documentation de chaque aspect métier : pourquoi est ce qu'on fait tel ou tel choix dans le code. ça c'est en annexe, et on peut revenir dessus après.
 :::
 
 
@@ -480,9 +488,13 @@ $\rightarrow$ Une fois la session sur simulateur terminée, possibilité d’exp
 :::{.notes}
 Pour introduire cette partie, je vais d'abord parler de simulateurs.
 
-De manière analogue à ce qu'on peut trouver dans l'aviation avec les simulateurs de vol, dans le nucléaire vous avez aussi des simulateurs dont le but va être de reproduire au mieux la tranche et les phénomènes physiques, en modélisant tous les sytèmes et la logique de contrôle commande.
+De manière analogue à ce qu'on peut trouver dans l'aviation avec les simulateurs de vol, dans le nucléaire vous avez aussi des simulateurs !
 
-Le but d'un simulateur à première vue, c'est faire de la formation et c'est vrai, mais pas que, ça peut aussi être utilisé dans le cadre de vérification de modifications sur l'installation et de rédaction de notes techniques - plus dans le cadre du groupe, etc etc.
+- Le but va être de reproduire au mieux le réacteur et les phénomènes physiques, en modélisant tous les sytèmes et la logique de contrôle commande.
+
+Le but d'un simulateur, c'est faire de la formation, c'est vrai, mais pas que, ça peut aussi être utilisé dans le cadre de vérification de modifications sur l'installation, de procédures d'essai, etc etc.
+
+Typiquement dans le cadre du démarrage de Flamanville 3, ça a beaucoup été utilisé.
 
 Une fois qu'on a terminé une session sur simulateur, on peut exporter les résultats de simulation sous forme de fichier csv.
 :::
@@ -560,18 +572,18 @@ Mais ensuite pour exploiter ces fichiers csv bruts, il faut quelque chose de plu
 :::{.notes}
 C'est pour ça que ViZiR a été crée.
 
-Pour la petite histoire ça s'appelle ViZiR parce que c'était un acronyme de Visualisation sur R, mais voilà, les applis sur R shiny comme celle que j'ai pu vous présenter dans la partie précédente c'est bien MAIS ça gère très mal un grand nombre d'utilisateurs en simultanné (or y'a plusieurs entités d'EDF qui manifestent leur désir d'utiliser ViZiR donc plusieurs utilisateurs en simultanné c'est clairement possible).
+Pour la petite histoire ça s'appelle ViZiR parce que c'était un acronyme de Visualisation sur R,
 
-Aussi, si jamais y'a pas de gestion d'erreur appropriée, ça déconnecte automatiquement les utilisateurs du serveur. Niveau stabilité on a vu mieux.
+MAIS, je pense que madame Scholler va être un peu déçue, mais voilà les applis Rshiny c'est bien mais voilà, ça gère très mal un grand nombre d'utilisateurs en simultanné (or y'a plusieurs entités d'EDF qui veulent utiliser ViZiR donc un nombre important d'utilisateurs c'est clairement possible).
 
-Et surtout, R c'est pas un langage qui a le vent en poupe chez EDF donc y'a pas forcément d'infrastructure adaptée où on peut déployer facilement des applis shiny, et ça ça compte.
+Et surtout, R c'est pas un langage qui a le vent en poupe chez EDF donc y'a pas forcément d'infrastructure adaptée où on peut déployer facilement des applis shiny, et ça ça compte, et c'est pour ça entre autres qu'on est passé à Python, dans un. C'était un travail titanesque en peu de temps, mais un peu de défi ça fait pas de mal.
 
 ***
 
-Maintenant la question après cet aparté c'est qu'est ce que permet ViZiR :
+Maintenant la question après cet aparté c'est qu'est ce que ViZiR permet de faire :
 
-- Un temps de paramétrage qui par rapport à Excel, est divisé par 10
-- Ensuite, grâce aux bases de données de simulateur, on peut récupérer les libellés associés aux capteurs, les unités, etc.
+- Réduire le temps de paramétrage des graphiques par rapport à Excel,
+- Ensuite, grâce aux bases de données de simulateur, on peut récupérer les libellés des capteurs, les unités du capteur, etc etc.
 - Surtout on a un graphique qui est dynamique, on peut facilement zoomer, regarder les valeurs des capteurs à un instant t, etc.
 - On a aussi des fonctionnalités comme les Axe Y secondaires et le groupement d'axes
 - Et enfin la fonctionnalité vraiment intéressante, c'est le rechargement d'une étude
@@ -611,7 +623,7 @@ Maintenant la question après cet aparté c'est qu'est ce que permet ViZiR :
 :::
 
 :::{.notes}
-Maintenant, voilà ce que ça donne :
+Voilà ce que ça donne :
 
 Une fois le fichier csv importé on peut sélectionner des capteurs pour les afficher dans la fenêtre graphique. Il y a deux types de capteurs qui ont leur propre fenetre graphique : les capteurs analogiques, et les capteurs TOR (Tout Ou Rien) qui sont simplement 0 ou 1.
 
@@ -619,35 +631,13 @@ Initialement, chaque capteur a son propre axe des ordonnées dédié, mais on pe
 
 - Ensuite on peut subdiviser la fenêtre graphique,
 
-- Changer le type de tracé, là au lieu de lignes on a seulement les points, ça peut être utile pour identifier les périodes d'acquisition des capteurs.
+- Changer le type de tracé, là au lieu de lignes on a seulement les points.
 
 - Le multigraph permet de comparer plusieurs graphiques cote à cote.
 
 - Aspect de personnalisation assez avancé : on peut changer le titre, la taille du titre, la couleur des axes, les minimum et maximum, ajouter des annotations...
 
 - Et surtout une fois qu'on a fait toutes ces personnalisations, on peut les sauvegarder dans un fichier json, et recharger la config de paramètres ensuite. Grâce à ça on s'assure qu'il y a une bonne reproductibilité des études.
-:::
-
-## Partie Technique {.smaller}
-
-<br>
-
-**🛠 Stack technique utilisée :**
-
-- `plotly`
-- `polars`
-- `streamlit`
-
-Utilisation avancée : `session_state` de streamlit
-
-Intégration dans un environnement de test : Datatools (Kubernetes / conteneurs)
-
-Présence de tests unitaires, 
-
-bonnes pratiques de code, documentation intégrée
-
-:::{.notes}
-
 :::
 
 # 3 | CONCLUSION
@@ -672,15 +662,31 @@ bonnes pratiques de code, documentation intégrée
 ::::
 
 :::{.notes}
-Travailler chez EDF ça a été une expérience professionnelle très agréable et enrichissante, j'ai eu l'avantage de travailler sur 2 sujets différents :
+Travailler chez EDF ça a été une expérience professionnelle très agréable et enrichissante, avec tout d'abord un aspect relationnel qui m'a plu : comprendre les attentes des collègues, des clients. J'ai aussi du organiser mon temps de travail intelligemment parce que j'ai eu 2 sujets différents :
 
 - Les pertes d'armoire de controle commande, avec l'application HPConnect,
 - Et le post traitement de résultats de simulation avec ViZiR
 
-Ca m'a permis de mobiliser beaucoup de compétences techniques qui sont enseignées au Mécen, mais surtout aussi d'apprendre, et je le dis avec humilité, beaucoup de choses spécifiques au domaine du nucléaire puisque j'étais en contact direct avec des ingénieurs du CNEPE, et j'ai aussi eu l'occasion d'aller sur le site de production de Dampierre, on voit d'ailleurs à gauche l'aéroréfrigérant de la tranche à l'arrêt, qu'on a pu visiter.
+Ca m'a permis de mobiliser beaucoup de compétences techniques qui sont enseignées au Mécen, mais surtout aussi d'apprendre, et je le dis avec humilité, beaucoup de choses spécifiques au domaine du nucléaire parce que j'étais en contact direct avec les meilleurs ingénieurs du CNEPE (y'en a 2 dans cette salle déjà).
 
-Une des choses que j'ai apprécié c'est le fait que maintenant ce que j'ai développé c'est utilisé et valorisé. C'est pas quelque chose d'expérimental qui reste dans son coin, y'a un véritable impact. Pour garantir le mantien de la solution dans le futur je me suis aussi beaucoup appuyé sur le groupe SID, que Guillaume vous présentera par la suite et je me suis aussi mis en contact avec l'équipe Data Science coté Edvance (une filiale d'EDF),  qui lance beaucoup de choses sur ces sujets.  
+Une des choses que j'ai apprécié c'est le fait que maintenant ce que j'ai développé c'est utilisé et valorisé. C'est pas quelque chose d'expérimental qui reste dans son coin, y'a un véritable impact.
+
+Et pour finir, j'ai aussi eu l'occasion d'aller à la Centrale de Dampierre, c'est la belle photo à gauche et oui, on a pu visiter l'aéroréfrigérant et c'est impressionnant. Quoi de mieux pour finir que quelques photos ?
 :::
+
+## Dampierre
+
+:::: {.columns}
+::: {.column width="50%"}
+![](assets/images/aero_inside.jpg){.lightbox width=85% fig-align=center}
+:::
+
+::: {.column width="50%"}
+![](assets/images/sdm.jpg){.lightbox width=65% fig-align=center}
+![](assets/images/turbine_bp.jpg){.lightbox width=65% fig-align=center}
+:::
+
+::::
 
 ## {.center}
 
@@ -701,7 +707,39 @@ Je vous remercie de votre attention, et si vous avez des questions n'hésitez pa
 
 ![](assets/images/cabinetloader_function_reference.PNG){.lightbox width=70% fig-align=left}
 
-## Annexe - session state {.smaller}
+## ViZiR -- Compléments {.smaller}
+
+<br>
+
+**🛠 Stack technique utilisée (python) :**
+
+- `streamlit` $\Rightarrow$ Librairie permettant de créer l'interface utilisateur d'une application sur **python**
+- `plotly` $\Rightarrow$ Librairie de visualisation interactive
+- `polars` $\Rightarrow$ Librairie de manipulation de données
+
+::: {.callout-note}
+
+## Industrialisation de la solution
+
+- Présence de tests unitaires,
+
+- Repository Git cohérent,
+
+- Intégration dans un environnement de déploiement : **Datatools** (basé sur OpenShift et Kubernetes),
+
+- Utilisation de bonnes pratiques de code (**PEP**) et documentation intégrée,
+
+- Utilisation avancée de la notion de `session_state` sur `streamlit`
+
+::: 
+
+:::{.notes}
+Kubernetes ça permet d'orchestrer des conteneurs et gérer les charges de travail de ces conteneurs.
+
+Openshift ça utilise Kubernetes
+:::
+
+## ViZiR - `session_state` {.smaller}
 
 <br>
 
@@ -729,15 +767,10 @@ def initialize_states() -> None:
 ```
 
 :::{.notes}
-Au sein du CNEPE, j'ai travaillé dans le service Fonctionnement, et plus précisément dans le groupe Fonctionnement Général et Performance.
-
-***
 
 Alors y'a plusieurs raisons qui expliquent cette part très elevé, mais une que j'ai choisi de mentionner c'est l'aspect d'approvisionnement électrique en continu que permet le nucléaire. Typiquement, à minuit vous pouvez produire la même quantité d'eléctricité qu'à midi. 
 
 Par contre, essayer de faire la même chose avec des panneaux photovoltaiques, ça marche pas trop.
 
 Enuite, en deuxième position dans le mix avec à peu près 10%, vous avez l'hydroélectrique. Un des intérêts majeurs de ce type d'énergie c'est sa flexibilité : elle s'adapte très très bien aux variations de la demande quand il y a des pics de consommation. 
-
-Autres gains : tout le process est documenté
 :::
